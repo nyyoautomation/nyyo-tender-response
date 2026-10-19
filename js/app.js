@@ -182,6 +182,7 @@
     setRing("#coverRing", "#coverPct", 42);
     nodes[3].classList.add("done");
     $("#panelExtract").classList.remove("hidden");
+    if (nodes[4]) { nodes[4].classList.add("on"); renderGoNoGo(); await sleep(350); nodes[4].classList.add("done"); }
     if (btn) btn.disabled = false;
     running = false;
     icons();
@@ -289,6 +290,125 @@
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;");
+  }
+
+
+  /* ---------- Go / No-Go (computed in the browser from the DCE extraction + your documents) ---------- */
+  const GO = {
+    fr: {
+      verdict: { go: "GO conseillé", study: "À étudier", nogo: "NO-GO conseillé" },
+      verdictNote: "Recommandation indicative, calculée sur l'exemple fictif. La décision reste celle de votre équipe.",
+      counts: (o, w, n) => `${o} favorable${o > 1 ? "s" : ""} · ${w} à vérifier · ${n} bloquant${n > 1 ? "s" : ""}`,
+      fitTitle: "Vos preuves face aux critères notés du RC",
+      fitNote: "Indicateur calculé sur l'exemple : part des critères techniques pour lesquels vos documents contiennent au moins deux preuves. Ce n'est pas une note prévisionnelle.",
+      fitLabel: "adéquation estimée",
+      proofs: (n) => (n ? `${n} preuve${n > 1 ? "s" : ""}` : "aucune preuve"),
+      priceCrit: "Saisi par vous — non évalué par l'outil",
+      days: (d) => (d < 0 ? "date passée" : `J-${d}`),
+      deadline: { label: "Délai avant la remise", ok: (d, dt) => `${d} jours avant la remise du ${dt} : le temps de préparer un dossier complet.`, warn: (d, dt) => `${d} jours seulement avant le ${dt} : planning serré.`, no: (d, dt) => `Remise le ${dt} : délai trop court ou dépassé.` },
+      checks: [
+        { k: "refs", label: "Références sur ouvrages similaires", q: "référence gymnase salle des sports piscine équipement sportif bâtiment public", src: /^(references|memoires)\//, min: 2, ok: (n) => `${n} références ou anciens mémoires proches trouvés dans vos documents.`, warn: () => "Une seule référence proche : à renforcer." },
+        { k: "team", label: "Équipe clé disponible", q: "CV conductrice de travaux chef de chantier responsable CVC équipe", src: /^cv\//, min: 2, ok: (n) => `${n} CV de l'équipe clé disponibles.`, warn: () => "CV de l'équipe clé incomplets." },
+        { k: "plan", label: "Délai d'exécution tenable", q: "planning fermeture 14 semaines jalons", src: /planning/, min: 1, ok: () => "Un planning type de 14 semaines existe déjà dans vos documents.", warn: () => "Aucun planning type : à construire." },
+        { k: "certs", label: "Certificats et assurances", q: "certificat ISO 9001 attestation assurance décennale responsabilité civile", src: /^certificats\//, min: 2, ok: (n) => `${n} certificats ou attestations à joindre, déjà dans vos documents.`, warn: () => "Certificats ou attestations manquants." },
+        { k: "means", label: "Moyens matériels", q: "moyens matériels grue échafaudage", src: /^moyens\//, min: 1, ok: () => "Liste des moyens matériels disponible.", warn: () => "Liste des moyens matériels à préparer." },
+      ],
+      risks: { label: "Points de vigilance du DCE", txt: (n, first) => `${n} points à lire avant de décider, dont : « ${first} »` },
+      docs: { label: "Pièces obligatoires à réunir", txt: (n) => `${n} pièces obligatoires (DC1, DC2, DUME, attestations…) : à réunir quoi qu'il arrive.` },
+      critQ: { C1: ["méthodologie phasage récupération de chaleur CVC levage sécurité", /^(memoires|politiques)\//], C2: ["référence gymnase salle des sports piscine", /^references\//], C3: ["CV conductrice chef de chantier responsable CVC", /^cv\//], C4: ["planning semaines jalons intempéries", /planning/] },
+    },
+    en: {
+      verdict: { go: "GO recommended", study: "Worth a closer look", nogo: "NO-GO recommended" },
+      verdictNote: "Indicative recommendation computed on the fictional sample. The decision stays with your team.",
+      counts: (o, w, n) => `${o} in favour · ${w} to check · ${n} blocking`,
+      fitTitle: "Your evidence against the scored award criteria",
+      fitNote: "Indicator computed on the sample: share of technical criteria for which your documents hold at least two pieces of evidence. It is not a predicted score.",
+      fitLabel: "estimated fit",
+      proofs: (n) => (n ? `${n} piece${n > 1 ? "s" : ""} of evidence` : "no evidence"),
+      priceCrit: "Entered by you — not assessed by the tool",
+      days: (d) => (d < 0 ? "past date" : `${d} days left`),
+      deadline: { label: "Time until submission", ok: (d, dt) => `${d} days before the ${dt} deadline: enough time for a complete bid.`, warn: (d, dt) => `Only ${d} days before ${dt}: tight schedule.`, no: (d, dt) => `Deadline ${dt}: too close or already passed.` },
+      checks: [
+        { k: "refs", label: "References on similar projects", q: "reference sports hall arena aquatic leisure public building", src: /^(references|past_proposals)\//, min: 2, ok: (n) => `${n} similar references or past proposals found in your documents.`, warn: () => "Only one similar reference: strengthen it." },
+        { k: "team", label: "Key team available", q: "CV project manager site supervisor HVAC lead team", src: /^cvs\//, min: 2, ok: (n) => `${n} key-team CVs available.`, warn: () => "Key-team CVs incomplete." },
+        { k: "plan", label: "Realistic delivery programme", q: "programme closure 14 weeks milestones", src: /programme/, min: 1, ok: () => "A 14-week programme template already exists in your documents.", warn: () => "No programme template: build one." },
+        { k: "certs", label: "Certificates and insurance", q: "certificate ISO 9001 insurance liability", src: /^certificates\//, min: 2, ok: (n) => `${n} certificates or insurance documents already on file.`, warn: () => "Certificates or insurance documents missing." },
+        { k: "means", label: "Plant and equipment", q: "equipment plant crane scaffold", src: /^equipment\//, min: 1, ok: () => "Plant and equipment list available.", warn: () => "Plant list to prepare." },
+      ],
+      risks: { label: "Watch-outs in the tender", txt: (n, first) => `${n} points to read before deciding, including: "${first}"` },
+      docs: { label: "Mandatory documents to gather", txt: (n) => `${n} mandatory documents (DC1, DC2, DUME, certificates…): needed either way.` },
+      critQ: { C1: ["methodology phasing heat recovery HVAC lifting safety", /^(past_proposals|policies)\//], C2: ["reference sports hall arena aquatic", /^references\//], C3: ["CV project manager supervisor HVAC lead", /^cvs\//], C4: ["programme weeks milestones weather", /programme/] },
+    },
+  }[LANG];
+
+  function parseDeadline(d) {
+    if (!d) return null;
+    let m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(d.date || "");
+    if (m) return new Date(+m[3], +m[2] - 1, +m[1]);
+    m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(d.date || "");
+    if (m) return new Date(+m[1], +m[2] - 1, +m[3]);
+    return null;
+  }
+
+  function evidence(q, srcRe) {
+    if (!state.kbIndex) return [];
+    return window.NyyoBM25.score(state.kbIndex, q)
+      .filter((h) => h.score > 0)
+      .map((h) => state.kbDocs.find((d) => d.id === h.id) || h)
+      .filter((d) => !srcRe || srcRe.test(d.source));
+  }
+
+  function citeChips(docs) {
+    return docs.slice(0, 3).map((d) => `<span class="cite go-cite">${escapeHtml(d.source.split("/").pop())} · ${T.page}${escapeHtml(d.page)}</span>`).join("");
+  }
+
+  function renderGoNoGo() {
+    const box = $("#goChecks");
+    if (!box || !state.extraction) return;
+    const ex = state.extraction;
+    const rows = [];
+    // 1. deadline
+    const sub = ex.deadlines.find((d) => /remise des offres|submission/i.test(d.label));
+    const dt = parseDeadline(sub);
+    if (dt) {
+      const today = new Date(); today.setHours(0, 0, 0, 0);
+      const days = Math.round((dt - today) / 86400000);
+      const st = days >= 15 ? "ok" : days >= 7 ? "warn" : "no";
+      rows.push({ st, label: GO.deadline.label, txt: GO.deadline[st](days, sub.date), cites: `<span class="cite go-cite">${escapeHtml(ex.meta.source_files[0].name)}</span>`, tag: GO.days(days) });
+    }
+    // 2. evidence checks against your own documents
+    for (const c of GO.checks) {
+      const ev = evidence(c.q, c.src);
+      const st = ev.length >= c.min ? "ok" : ev.length ? "warn" : "no";
+      rows.push({ st, label: c.label, txt: st === "ok" ? c.ok(ev.length) : c.warn(ev.length), cites: citeChips(ev) });
+    }
+    // 3. watch-outs + mandatory documents
+    const warns = (ex.alerts || []).filter((a) => a.level === "warn");
+    if (warns.length) rows.push({ st: "warn", label: GO.risks.label, txt: GO.risks.txt(warns.length, warns[0].text), cites: "" });
+    const mand = ex.required_documents.filter((d) => d.mandatory).length;
+    rows.push({ st: "info", label: GO.docs.label, txt: GO.docs.txt(mand), cites: "" });
+
+    const o = rows.filter((r) => r.st === "ok").length, w = rows.filter((r) => r.st === "warn").length, n = rows.filter((r) => r.st === "no").length;
+    const v = n ? "nogo" : w > 2 ? "study" : "go";
+    const ico = { ok: "circle-check", warn: "triangle-alert", no: "circle-x", info: "info" };
+    $("#goVerdict").className = "go-verdict " + v;
+    $("#goVerdict").innerHTML = `<span class="go-v">${GO.verdict[v]}</span><span class="go-c">${GO.counts(o, w, n)}</span><small>${GO.verdictNote}</small>`;
+    box.innerHTML = rows.map((r) => `<div class="go-row ${r.st}"><i data-lucide="${ico[r.st]}"></i><div><strong>${escapeHtml(r.label)}</strong>${r.tag ? ` <span class="pill">${escapeHtml(r.tag)}</span>` : ""}<p>${escapeHtml(r.txt)}</p>${r.cites ? `<div class="go-cites">${r.cites}</div>` : ""}</div></div>`).join("");
+
+    // criteria fit
+    let num = 0, den = 0;
+    $("#goFit").innerHTML = ex.scoring.map((c) => {
+      const q = GO.critQ[c.id];
+      if (!q) return `<div class="fit-row price"><span class="id">${escapeHtml(c.id)}</span><div><span class="pc-name">${escapeHtml(c.name)}</span><small>${GO.priceCrit}</small></div><span class="w">${c.weight}%</span></div>`;
+      const ev = evidence(q[0], q[1]).slice(0, 3);
+      const k = Math.min(1, ev.length / 2);
+      num += c.weight * k; den += c.weight;
+      return `<div class="fit-row"><span class="id">${escapeHtml(c.id)}</span><div><span class="pc-name">${escapeHtml(c.name)}</span><div class="pc-bar"><b style="width:${Math.round(k * 100)}%"></b></div><small>${GO.proofs(ev.length)}${ev.length ? " — " + ev.map((d) => escapeHtml(d.source.split("/").pop())).join(", ") : ""}</small></div><span class="w">${c.weight}%</span></div>`;
+    }).join("");
+    $("#goFitPct").textContent = den ? Math.round((num / den) * 100) + " %" : "—";
+    $("#goFitLbl").textContent = GO.fitLabel;
+    $("#panelGo").classList.remove("hidden");
+    icons();
   }
 
   /* ---------- KB search ---------- */
@@ -672,14 +792,26 @@
       icons();
 
       $("#btnRun").addEventListener("click", runPipeline);
-      $("#btnRunSticky").addEventListener("click", () => {
-        window.scrollTo({ top: $("#pipeline").offsetTop - 20, behavior: "smooth" });
+      const goDemo = (e) => {
+        if (e) e.preventDefault();
+        window.scrollTo({ top: $("#pipeline").getBoundingClientRect().top + window.scrollY - 70, behavior: "smooth" });
         runPipeline();
-      });
+      };
+      $$("[data-run-demo]").forEach((b) => b.addEventListener("click", goDemo));
+      // Sticky mobile CTA: hidden while the hero call-to-action is on screen
+      const sticky = $(".sticky-hire"), heroCta = $("#heroCta");
+      if (sticky && heroCta && "IntersectionObserver" in window) {
+        new IntersectionObserver(([en]) => sticky.classList.toggle("off", en.isIntersecting), { threshold: 0 }).observe(heroCta);
+      }
       $("#btnGenerate").addEventListener("click", generatePack);
       $("#btnDocx").addEventListener("click", downloadDocx);
       $("#btnPdf").addEventListener("click", exportPdf);
 
+      // Hero loop: respect reduced-motion (poster + controls instead of autoplay)
+      const hv = $("#heroVideo");
+      if (hv && window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        hv.removeAttribute("autoplay"); hv.pause(); hv.controls = true;
+      }
       // Auto-run wow once for first impression
       setTimeout(runPipeline, 600);
     } catch (err) {

@@ -28,6 +28,7 @@
   <script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js" defer></script>
   <script src="./js/bm25.js" defer></script>
   <script src="./js/app.js" defer></script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does the tool replace the person who prepares bids?", "acceptedAnswer": {"@type": "Answer", "text": "No. It prepares a draft: tender analysis, Go / No-Go, compliance matrix, technical proposal. Your team reviews, completes and decides. The bidder remains solely responsible for what is submitted."}}, {"@type": "Question", "name": "Where do the proposal answers come from?", "acceptedAnswer": {"@type": "Answer", "text": "From your own documents: past proposals, references, CVs, certificates, plant lists. Each item cites its file and page. When no evidence is found, the row stays “Needs review” instead of being invented. The AI can be wrong: sources reduce that risk without removing it, hence the mandatory review."}}, {"@type": "Question", "name": "Does the tool calculate my prices?", "acceptedAnswer": {"@type": "Answer", "text": "No. Price-schedule figures come from you. The tool reuses the amount you enter and never prices anything for you."}}, {"@type": "Question", "name": "How does the Go / No-Go work?", "acceptedAnswer": {"@type": "Answer", "text": "The grid cross-checks the tender with your documents: time to deadline, similar references, key team, programme, certificates and insurance, plant, watch-outs and mandatory forms. It gives an indicative recommendation; the decision stays yours."}}, {"@type": "Question", "name": "Where is my data stored?", "acceptedAnswer": {"@type": "Answer", "text": "Online, each company has its own isolated workspace, the AI is hosted in Europe and your data is not used to train any model. Access is limited and logged, and you can request deletion. A confidentiality agreement is signed before you share a real document. A fully on-premises version is available as an option."}}, {"@type": "Question", "name": "Do I need to install anything?", "acceptedAnswer": {"@type": "Answer", "text": "Not for the online version: everything happens in the browser. The version installed on your PC or an office mini-PC comes with the Guided plan."}}, {"@type": "Question", "name": "Which documents can it read?", "acceptedAnswer": {"@type": "Answer", "text": "The usual tender documents in PDF, Word and Excel: rules, admin specs, technical specs, price schedule and appendices. This page uses a pre-analysed fictional tender so you can try everything without sending anything."}}, {"@type": "Question", "name": "How much does it cost?", "acceptedAnswer": {"@type": "Answer", "text": "Essential €79/month (2 tenders a month), Pro €149/month (4 a month), Guided €1,490 then €349/month (8 a month, with import of your past proposals and a Word template in your colours). No setup fee on Essential and Pro."}}, {"@type": "Question", "name": "How do I get started?", "acceptedAnswer": {"@type": "Answer", "text": "Try the demo on this page, then email LaborX (https://laborx.com/freelancers/users/id475124) with the kind of tenders you bid on. We open your workspace and help you load your first documents, over a video call where you share your screen."}}]}</script>
 </head>
 <body>
 <!-- NYYO_PREMIUM_V1 -->
@@ -46,16 +47,40 @@
 
     <header class="hero" id="hero">
       <div class="hero-inner">
-        <span class="tag"><span class="dot"></span> Live sample · fictional tender · no signup</span>
-        <h1>Construction bid helper — <span class="grad">review-ready tender pack</span></h1>
-        <p class="lead">
-          Load a sample public-tender package, see scored criteria light up, search your past files, fill price &amp; team, then export a proposal pack with citations.
-          Built for small construction firms.
-        </p>
-        <p class="host-line"><i data-lucide="cloud"></i><span><strong>Online first:</strong> an isolated workspace per company, AI hosted in Europe, never trained on your data; a fully on-premises version is available as an option.</span></p>
+      <div class="hero-split">
+        <div class="hero-copy">
+          <span class="tag"><span class="dot"></span> Live demo · fictional tender · no sign-up</span>
+          <h1>From tender pack to review-ready proposal, <span class="grad">every item sourced</span></h1>
+          <p class="lead">
+            For construction SMEs bidding on public tenders. The tool reads the rules, admin specs, technical specs and price schedule, helps you decide whether to bid (Go / No-Go), fills the compliance matrix from your past proposals and drafts a Word document. Every item points to its file and page.
+          </p>
+          <div class="hero-cta" id="heroCta">
+            <button type="button" class="btn btn-primary btn-lg" data-run-demo><i data-lucide="play"></i> Try the demo now</button>
+            <a class="btn btn-ghost btn-lg" href="#plans"><i data-lucide="tag"></i> See pricing</a>
+          </div>
+          <p class="hero-micro"><span><i data-lucide="check"></i> No account, no email</span><span><i data-lucide="check"></i> Runs in your browser</span><span><i data-lucide="check"></i> Fictional documents</span></p>
+          <p class="hero-est"><i data-lucide="timer"></i><span><strong>On the sample (90 pages):</strong> ≈ 2 to 3 h to read the pack and log everything by hand, ≈ 20 to 30 min to review the citations with the tool. <em>Estimate on the sample, not a promise.</em></span></p>
+        </div>
+        <figure class="hero-media">
+          <div class="hm-frame">
+            <div class="hm-bar"><span></span><span></span><span></span><em>Real demo · fictional data</em></div>
+            <video id="heroVideo" autoplay muted loop playsinline preload="metadata" poster="assets/demo-loop-en.jpg" aria-label="Recording of this demo: tender analysis, Go / No-Go, past-proposal search, proposal draft and compliance matrix">
+              <source src="assets/demo-loop-en.webm" type="video/webm" />
+              <source src="assets/demo-loop-en.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <figcaption>Screen recording of this page, no editing, results not sped up.</figcaption>
+        </figure>
+      </div>
+      <ul class="sec-strip" aria-label="Security and hosting">
+        <li><i data-lucide="box"></i> Isolated workspace per company</li>
+        <li><i data-lucide="map-pin"></i> AI hosted in Europe</li>
+        <li><i data-lucide="ban"></i> No training on your data</li>
+        <li><i data-lucide="scroll-text"></i> Logged access</li>
+        <li><i data-lucide="building-2"></i> Fully on-premises option</li>
+      </ul>
         <div class="hero-meta">
           <span>From <strong>€79/month</strong></span>
-          <span><strong>AI hosted in Europe</strong></span>
           <span><strong>Remote · Worldwide</strong></span>
         </div>
         <div class="plan-strip" aria-label="Plans at a glance">
@@ -74,8 +99,19 @@
       </div>
     </header>
 
+
+    <section class="panel value" id="value" aria-label="What you get">
+      <div class="panel-head"><h2><i data-lucide="trending-up" style="width:18px;height:18px;vertical-align:-3px"></i> What you get</h2></div>
+      <p class="value-p">On the demo's fictional tender: sports hall renovation, 4 documents, 90 pages. Durations are <strong>estimates on this sample</strong>, not a promise.</p>
+      <div class="ba3" role="table">
+        <div class="h" role="columnheader">On the sample</div><div class="h" role="columnheader">Without the tool</div><div class="h after" role="columnheader">With the tool</div>
+        <div class="topic" role="cell">Read the tender pack</div><div class="before" role="cell">Read the 4 documents and log criteria, dates and forms in a spreadsheet: <span class="fig">≈ 2 to 3 h</span><span class="est">estimate</span></div><div class="after-c" role="cell"><span class="fig">5</span> weighted criteria, <span class="fig">15</span> requirements, <span class="fig">5</span> dates and <span class="fig">10</span> documents logged with their page; citation review: <span class="fig">≈ 20 to 30 min</span><span class="est">estimate</span></div><div class="topic" role="cell">Decide whether to bid</div><div class="before" role="cell">Gut feeling in a meeting, no shared grid.</div><div class="after-c" role="cell">Go / No-Go grid of <span class="fig">8</span> checks: deadline, references, team, programme, certificates, plant, watch-outs, forms. Each check cites its source.<span class="est">on the sample</span></div><div class="topic" role="cell">Fill the compliance matrix</div><div class="before" role="cell">Copy-paste requirement by requirement, and risk missing one.</div><div class="after-c" role="cell">Pre-filled matrix: every technical requirement, its status and the document that answers it. No evidence means the row stays “Needs review”.</div><div class="topic" role="cell">Write the technical proposal</div><div class="before" role="cell">Start from a blank page or recycle an old proposal by hand.</div><div class="after-c" role="cell">Word draft structured by the award criteria, drawing on your past proposals, references and CVs.</div><div class="topic" role="cell">Miss nothing</div><div class="before" role="cell">Forms and penalties scattered across rules and admin specs.</div><div class="after-c" role="cell">Checklist of <span class="fig">10</span> documents, <span class="fig">9</span> mandatory (DC1, DC2, DUME, price schedule…) and <span class="fig">4</span> watch-outs.<span class="est">on the sample</span></div>
+      </div>
+      <p class="value-foot">Estimated for someone used to public tenders, on this fictional pack. Times vary with each tender. Human review remains mandatory.</p>
+    </section>
+
     <section class="steps" aria-label="How it works" id="how">
-      <div class="step" data-step="1"><span class="n">1</span><h3>Load tender</h3><p>Sample package → requirements, scores, deadlines.</p></div>
+      <div class="step" data-step="1"><span class="n">1</span><h3>Analyse and decide</h3><p>Rules, specs, price schedule → criteria, requirements, dates, then Go / No-Go.</p></div>
       <div class="step" data-step="2"><span class="n">2</span><h3>Search past files</h3><p>In-browser search with citations to source pages.</p></div>
       <div class="step" data-step="3"><span class="n">3</span><h3>Enter key inputs</h3><p>Price, schedule, team, variants — your numbers.</p></div>
       <div class="step" data-step="4"><span class="n">4</span><h3>Export pack</h3><p>Proposal + compliance matrix + checklist (DC1, DC2 and DUME tender forms) → DOCX/PDF.</p></div>
@@ -91,6 +127,8 @@
         <div class="pipe-node" data-node="score"><div class="ico"><i data-lucide="gauge"></i></div><strong>Score criteria</strong><small>weights light up</small></div>
         <span class="pipe-arrow">→</span>
         <div class="pipe-node" data-node="cover"><div class="ico"><i data-lucide="circle-check"></i></div><strong>Coverage</strong><small>compliance ring</small></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-node" data-node="go"><div class="ico"><i data-lucide="signpost"></i></div><strong>Go / No-Go</strong><small>your evidence, sourced</small></div>
       </div>
       <div class="pipe-live" aria-live="polite">
         <div class="pipe-crit" id="pipeCrit"></div>
@@ -140,6 +178,27 @@
       <h3 style="font-size:0.9rem;margin:16px 0 8px">Requirements <span class="badge-sample">from sample specs</span></h3>
       <div class="req-list" id="reqs"></div>
       <div id="alerts" style="margin-top:12px"></div>
+    </section>
+
+    <!-- GO / NO-GO -->
+    <section class="panel hidden" id="panelGo" aria-label="Go / No-Go decision aid">
+      <div class="panel-head">
+        <h2><i data-lucide="signpost" style="width:18px;height:18px;vertical-align:-3px"></i> Should you bid? Go / No-Go</h2>
+        <span class="badge-live">Computed live · tender + your documents</span>
+      </div>
+      <p class="go-intro">The grid cross-checks the tender with the fictional company's documents. Each check shows where the information comes from.</p>
+      <div class="go-grid">
+        <div>
+          <div class="go-verdict" id="goVerdict" aria-live="polite"></div>
+          <div class="go-checks" id="goChecks"></div>
+        </div>
+        <aside class="go-fit">
+          <h3>Your evidence against the scored award criteria</h3>
+          <div class="go-fit-num"><strong id="goFitPct">—</strong><span id="goFitLbl"></span></div>
+          <div id="goFit"></div>
+          <p class="go-fit-note">Indicator computed on the sample: weighted share of technical criteria covered by at least two of your documents. It is not a predicted score.</p>
+        </aside>
+      </div>
     </section>
 
     <!-- STEP 2: Knowledge base -->
@@ -220,6 +279,13 @@
     </section>
 
     <!-- Plans & hosting -->
+    <section class="panel" id="features" aria-label="The whole bid workflow, from first read to submission">
+      <div class="panel-head"><h2><i data-lucide="workflow" style="width:18px;height:18px;vertical-align:-3px"></i> The whole bid workflow, from first read to submission</h2></div>
+      <div class="feat-grid"><div class="feat"><div class="feat-ico"><i data-lucide="scan-text"></i></div><h3>Tender analysis</h3><p>Weighted criteria, requirements, deadlines and forms, each with its page in the source document.</p><span class="feat-badge pre">Demo: pre-analysed sample</span></div><div class="feat"><div class="feat-ico"><i data-lucide="signpost"></i></div><h3>Go / No-Go</h3><p>One shared grid to decide fast: deadline, references, team, programme, certificates, plant, watch-outs.</p><span class="feat-badge">In this demo</span></div><div class="feat"><div class="feat-ico"><i data-lucide="library"></i></div><h3>Your past proposals</h3><p>Search your past proposals, references, CVs, certificates and plant lists, with file and page.</p><span class="feat-badge">In this demo</span></div><div class="feat"><div class="feat-ico"><i data-lucide="table-2"></i></div><h3>Compliance matrix</h3><p>Every technical requirement, its status and its source. Nothing is marked compliant without evidence.</p><span class="feat-badge">In this demo</span></div><div class="feat"><div class="feat-ico"><i data-lucide="file-pen-line"></i></div><h3>Technical proposal</h3><p>Draft structured by the scored criteria, with your figures and commitments, exported to Word or PDF.</p><span class="feat-badge">In this demo</span></div><div class="feat"><div class="feat-ico"><i data-lucide="list-checks"></i></div><h3>Documents to submit</h3><p>Checklist of DC1, DC2, DUME, certificates and price schedule with their status, so nothing is missing.</p><span class="feat-badge">In this demo</span></div></div>
+      <h3 class="ver-h">What you can check for yourself</h3>
+      <div class="ver-grid"><div class="ver"><i data-lucide="mouse-pointer-click"></i><div><h3>Try it before talking to anyone</h3><p>The full workflow runs on this page, no meeting, no account.</p></div></div><div class="ver"><i data-lucide="tag"></i><div><h3>Prices on the page</h3><p>€79, €149 or €1,490 + €349/month. No “contact us for pricing”.</p></div></div><div class="ver"><i data-lucide="quote"></i><div><h3>A source for every item</h3><p>File and page for each criterion, requirement and proposed answer, so you can check it yourself.</p></div></div><div class="ver"><i data-lucide="badge-alert"></i><div><h3>No magic numbers</h3><p>No “% more tenders won” or “zero errors”. Our durations are estimates on the sample and our limits are published.</p></div></div></div>
+    </section>
+
     <section class="panel" id="plans" aria-label="Plans and hosting">
       <div class="panel-head">
         <h2><i data-lucide="cloud" style="width:18px;height:18px;vertical-align:-3px"></i> Plans &amp; hosting</h2>
@@ -319,6 +385,11 @@
       </div>
     </section>
 
+    <section class="panel" id="faq" aria-label="Frequently asked questions">
+      <div class="panel-head"><h2><i data-lucide="message-circle-question" style="width:18px;height:18px;vertical-align:-3px"></i> Frequently asked questions</h2></div>
+      <div class="faq"><details class="faq-item"><summary>Does the tool replace the person who prepares bids?<i data-lucide="plus"></i></summary><p>No. It prepares a draft: tender analysis, Go / No-Go, compliance matrix, technical proposal. Your team reviews, completes and decides. The bidder remains solely responsible for what is submitted.</p></details><details class="faq-item"><summary>Where do the proposal answers come from?<i data-lucide="plus"></i></summary><p>From your own documents: past proposals, references, CVs, certificates, plant lists. Each item cites its file and page. When no evidence is found, the row stays “Needs review” instead of being invented. The AI can be wrong: sources reduce that risk without removing it, hence the mandatory review.</p></details><details class="faq-item"><summary>Does the tool calculate my prices?<i data-lucide="plus"></i></summary><p>No. Price-schedule figures come from you. The tool reuses the amount you enter and never prices anything for you.</p></details><details class="faq-item"><summary>How does the Go / No-Go work?<i data-lucide="plus"></i></summary><p>The grid cross-checks the tender with your documents: time to deadline, similar references, key team, programme, certificates and insurance, plant, watch-outs and mandatory forms. It gives an indicative recommendation; the decision stays yours.</p></details><details class="faq-item"><summary>Where is my data stored?<i data-lucide="plus"></i></summary><p>Online, each company has its own isolated workspace, the AI is hosted in Europe and your data is not used to train any model. Access is limited and logged, and you can request deletion. A confidentiality agreement is signed before you share a real document. A fully on-premises version is available as an option.</p></details><details class="faq-item"><summary>Do I need to install anything?<i data-lucide="plus"></i></summary><p>Not for the online version: everything happens in the browser. The version installed on your PC or an office mini-PC comes with the Guided plan.</p></details><details class="faq-item"><summary>Which documents can it read?<i data-lucide="plus"></i></summary><p>The usual tender documents in PDF, Word and Excel: rules, admin specs, technical specs, price schedule and appendices. This page uses a pre-analysed fictional tender so you can try everything without sending anything.</p></details><details class="faq-item"><summary>How much does it cost?<i data-lucide="plus"></i></summary><p>Essential €79/month (2 tenders a month), Pro €149/month (4 a month), Guided €1,490 then €349/month (8 a month, with import of your past proposals and a Word template in your colours). No setup fee on Essential and Pro.</p></details><details class="faq-item"><summary>How do I get started?<i data-lucide="plus"></i></summary><p>Try the demo on this page, then email LaborX (https://laborx.com/freelancers/users/id475124) with the kind of tenders you bid on. We open your workspace and help you load your first documents, over a video call where you share your screen.</p></details></div>
+    </section>
+
 <!-- Honest limits -->
     <section class="panel" id="limits" aria-label="Honest limits">
       <div class="panel-head">
@@ -331,6 +402,7 @@
         <li><strong>No guaranteed score</strong> — we structure to the published criteria; we don’t predict the jury.</li>
         <li><strong>Responsibility stays with the bidder</strong> — Nyyo Automation does not submit bids on your behalf.</li>
         <li><strong>This demo</strong> — the sample package is <em>pre-analysed</em> (extraction results are stored, not computed live); search, form, assembly and DOCX export run live in your browser on fictional data.</li>
+        <li><strong>Not available yet</strong>: tender monitoring, automatic filling of DC1 / DC2 / DUME forms, team collaboration on one bid (tasks, statuses), buyer-imposed Excel response grids. We say so rather than let you assume otherwise.</li>
       </ul>
     </section>
 
@@ -340,8 +412,8 @@
   </div>
 
   <div class="sticky-hire">
-    <a class="btn btn-primary" href="mailto:LaborX (https://laborx.com/freelancers/users/id475124)?subject=Tender%20response%20tool"><i data-lucide="mail"></i> Contact</a>
-    <button type="button" class="btn btn-ghost" id="btnRunSticky" aria-label="Run sample"><i data-lucide="play"></i><span class="lbl">Run sample</span></button>
+    <button type="button" class="btn btn-primary" data-run-demo><i data-lucide="play"></i> Try the demo</button>
+    <a class="btn btn-ghost" href="mailto:LaborX (https://laborx.com/freelancers/users/id475124)?subject=Tender%20response%20tool" aria-label="Contact us by email"><i data-lucide="mail"></i><span class="lbl">Contact</span></a>
   </div>
 
   <!-- Print-only pack -->
