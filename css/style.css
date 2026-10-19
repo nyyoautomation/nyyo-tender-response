@@ -374,3 +374,35 @@ footer a { color: var(--lime); }
   background-repeat: no-repeat; background-position: right 12px center; padding-right: 34px;
 }
 .field select option { background: #0a0f2c; color: var(--text); }
+
+/* Header + sticky CTA (compact, single line) */
+:root { --sticky-h: 64px; }
+.topbar { flex-wrap: nowrap; }
+.top-actions { display: flex; gap: 8px; flex-shrink: 0; }
+.top-actions .btn i, .sticky-hire .btn i { width: 16px; height: 16px; }
+.brand { min-width: 0; }
+.brand-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sticky-hire { gap: 8px; padding: 8px 12px calc(8px + env(safe-area-inset-bottom)); }
+.sticky-hire .btn { padding: 9px 16px; }
+body { padding-bottom: calc(var(--sticky-h) + env(safe-area-inset-bottom)); }
+.wrap { padding-bottom: 24px; }
+footer { padding-bottom: 16px !important; }
+@media (max-width: 560px) {
+  :root { --sticky-h: 56px; }
+  .wrap { padding-left: 12px; padding-right: 12px; }
+  .topbar { padding: 8px 0 10px; gap: 8px; }
+  .brand { gap: 8px; font-size: 0.86rem; }
+  .brand img { width: 28px; height: 28px; border-radius: 8px; }
+  .top-actions { gap: 6px; }
+  .top-actions .btn { padding: 8px 10px; }
+  .top-actions .btn-ghost .lbl { display: none; }
+  .top-actions .btn-ghost { width: 36px; height: 36px; padding: 0; }
+  .sticky-hire { padding: 6px 10px calc(6px + env(safe-area-inset-bottom)); }
+  .sticky-hire .btn { padding: 8px 14px; font-size: 0.82rem; }
+  .sticky-hire .btn-ghost .lbl { display: none; }
+  .sticky-hire .btn-ghost { width: 38px; padding: 8px 0; }
+}
+@media (max-width: 370px) {
+  .brand-name { font-size: 0.8rem; }
+  .top-actions .btn-primary { padding: 8px 10px; }
+}
