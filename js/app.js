@@ -51,7 +51,6 @@
       firstQuery: "récupération de chaleur",
       typeQuery: "Saisissez une recherche ou touchez une suggestion.", noMatch: "Aucun résultat — essayez un autre terme.",
       drafting: "Rédaction des parties à partir des critères et de vos anciens mémoires…",
-      money: (n) => n.toLocaleString("fr-FR") + " € HT",
       pmLine: (pm) => `Conductrice / conducteur de travaux désigné(e) : ${pm}.`,
       closureLine: (w) => `Fermeture continue du gymnase : ${w} semaines (maximum fixé par le RC : 14).`,
       priceLine: (m) => `Montant total de l'offre : ${m}. Les prix sont saisis par l'entreprise, jamais calculés par l'IA.`,
