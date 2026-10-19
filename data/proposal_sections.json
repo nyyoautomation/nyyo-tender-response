@@ -1,0 +1,103 @@
+{
+  "C1": {
+    "title": "Technical approach & methodology",
+    "bullets": [
+      {
+        "text": "We will replace the two existing AHUs with high-efficiency units \u226512,000 m\u00b3/h and rotary heat recovery certified \u226570%, following the weekend changeover pattern proven at Riverside Leisure Centre.",
+        "cite": "kb-prop-1"
+      },
+      {
+        "text": "Occupied adjoining rooms will be tempered with temporary AHUs to hold 18\u201322\u00b0C during construction, as specified.",
+        "cite": "kb-equip"
+      },
+      {
+        "text": "South fa\u00e7ade glazing will use double-glazed units targeting Uw \u22641.4 W/m\u00b2K on retained mullions, with shrink-wrap weather protection \u2014 method reused from Oakwood School.",
+        "cite": "kb-prop-2"
+      },
+      {
+        "text": "Sports floor installation will follow our Class P1 QC hold-points (moisture, rebound, colour match under 4000K).",
+        "cite": "kb-qc"
+      },
+      {
+        "text": "Roof plant crane lifts will use our temporary works pack: Chartered designer, 110% trial lift, exclusion zones.",
+        "cite": "kb-prop-3"
+      },
+      {
+        "text": "Waste diversion target \u226575% with monthly registers, exceeding the 70% requirement.",
+        "cite": "kb-waste"
+      }
+    ]
+  },
+  "C2": {
+    "title": "Relevant experience & references",
+    "bullets": [
+      {
+        "text": "Reference 1 \u2014 Riverside Leisure HVAC upgrade (2024), $920k, 11 weeks, heat recovery 72%.",
+        "cite": "kb-prop-1"
+      },
+      {
+        "text": "Reference 2 \u2014 Oakwood School sports hall envelope (2023), $640k, Uw 1.2 glazing, zero incidents.",
+        "cite": "kb-prop-2"
+      },
+      {
+        "text": "Supporting reference \u2014 Harborview Arena finishes (2022) for Class P1 sports surface delivery.",
+        "cite": "kb-ref-1"
+      },
+      {
+        "text": "HVAC may be partly subcontracted under our approved supply-chain controls; any package >20% will be declared.",
+        "cite": "kb-ref-2"
+      }
+    ]
+  },
+  "C3": {
+    "title": "Team & key personnel",
+    "bullets": [
+      {
+        "text": "Project Manager: Samira Haddad \u2014 11 years public building works; available full-time from November 2026.",
+        "cite": "kb-cv-pm"
+      },
+      {
+        "text": "Site Supervisor: Tomasz Lewandowski \u2014 fa\u00e7ade and temporary weatherproofing lead on Oakwood.",
+        "cite": "kb-cv-sup"
+      },
+      {
+        "text": "HVAC Lead: Priya Nair \u2014 commissioning engineer for heat-recovery AHU packages.",
+        "cite": "kb-cv-hvac"
+      },
+      {
+        "text": "Insurance exceeds minima: PL $10M / PI $3M for temporary works design.",
+        "cite": "kb-cert-ins"
+      }
+    ]
+  },
+  "C4": {
+    "title": "Programme & delivery certainty",
+    "bullets": [
+      {
+        "text": "We commit to a maximum 14-week continuous hall closure with changing-rooms handover at week 8.",
+        "cite": "kb-programme"
+      },
+      {
+        "text": "Weather contingency of 8 working days is embedded on the fa\u00e7ade critical path.",
+        "cite": "kb-programme"
+      },
+      {
+        "text": "Parallel working: fa\u00e7ade W3\u20136 and HVAC risers W3\u20138, commissioning W13, snagging W14.",
+        "cite": "kb-programme"
+      }
+    ]
+  },
+  "C5": {
+    "title": "Price response",
+    "bullets": [
+      {
+        "text": "Price schedule will be completed without altering item codes; arithmetical checks welcomed.",
+        "cite": null
+      },
+      {
+        "text": "Any heat-recovery technology variant will be priced only on schedule tab V, if selected in the form.",
+        "cite": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+NORTHBRIDGE MUNICIPAL WORKS AUTHORITY — FICTIONAL SAMPLE
+Rules of Consultation — NMW-2026-HALL-014
+Community sports hall renovation (HVAC, envelope & finishes)
+
+Procedure: Open competitive procedure (works)
+Estimated value: USD 1,850,000
+Submission deadline: 2026-11-20 12:00 UTC
+Clarifications: 2026-11-03 17:00 UTC
+Optional site visit: 2026-10-28 10:00 UTC
+
+Award criteria (weights sum 100%):
+  C1 Technical approach & methodology — 35%
+  C2 Relevant experience & references — 25%
+  C3 Team & key personnel — 15%
+  C4 Programme & delivery certainty — 15%
+  C5 Price — 10%
+
+Key rules:
+- Maximum continuous hall closure: 14 calendar weeks; changing rooms handover week 8.
+- Project manager ≥ 8 years on public buildings > $1M.
+- At least two sports/education renovation references in 8 years.
+- Variants only for heat-recovery technology (price schedule tab V).
+- Declare any subcontract > 20% of contract value.
+
+This document is 100% fictional and written for a Nyyo Automation portfolio demo.

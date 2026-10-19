@@ -1,0 +1,182 @@
+{
+  "label": "Example knowledge base \u00b7 fictional Apex Build Co.",
+  "company": "Apex Build Co. (fictional)",
+  "chunks": [
+    {
+      "id": "kb-prop-1",
+      "title": "Past proposal \u2014 Riverside Leisure Centre HVAC upgrade (2024)",
+      "source": "past_proposals/riverside_leisure_hvac_2024.docx",
+      "page": 3,
+      "tags": [
+        "HVAC",
+        "methodology",
+        "heat recovery",
+        "phased"
+      ],
+      "text": "Apex Build Co. delivered a phased HVAC upgrade at Riverside Leisure Centre while keeping the pool hall in partial use. Two AHUs with rotary heat recovery (72% certified) were crane-lifted over two weekend shutdowns. Temporary ducting maintained supply to changing rooms. QC included duct leakage tests to DW/143 and BMS trend logging for 14 days post-commissioning. Client: Riverside Parks Trust (fictional). Value: $920k. Duration: 11 weeks."
+    },
+    {
+      "id": "kb-prop-2",
+      "title": "Past proposal \u2014 Oakwood School sports hall envelope (2023)",
+      "source": "past_proposals/oakwood_envelope_2023.docx",
+      "page": 5,
+      "tags": [
+        "envelope",
+        "glazing",
+        "fa\u00e7ade",
+        "programme"
+      ],
+      "text": "South fa\u00e7ade glazing replacement at Oakwood School sports hall used unitised double-glazed panels Uw 1.2 W/m\u00b2K fixed to retained mullions. Weather contingency of 10 working days was built into the programme. Temporary weatherproofing with shrink-wrap and scaffold fans protected the timber floor. Night works limited to 22:00 by neighbour agreement. Value: $640k. Duration: 9 weeks. Zero reportable incidents."
+    },
+    {
+      "id": "kb-prop-3",
+      "title": "Method note \u2014 temporary works for roof plant lifts",
+      "source": "past_proposals/temp_works_crane_note.docx",
+      "page": 1,
+      "tags": [
+        "safety",
+        "crane",
+        "temporary works",
+        "roof"
+      ],
+      "text": "Standard Apex temporary works pack for roof plant: appointed temporary works designer (Chartered Engineer), outrigger load checks on existing structure, exclusion zones managed by banksman radios, and a trial lift at 110% of plant weight. Lift plans submitted 10 working days before mobilisation. This pack was reused on Riverside and Harborview jobs with site-specific appendices."
+    },
+    {
+      "id": "kb-ref-1",
+      "title": "Reference \u2014 Harborview Community Arena finishes (2022)",
+      "source": "references/harborview_arena_2022.pdf",
+      "page": 1,
+      "tags": [
+        "finishes",
+        "sports floor",
+        "reference"
+      ],
+      "text": "Client contact: J. Keller, Facilities Lead, Harborview Arena Board (fictional). Scope: sports floor Class P1, wall padding, and LED lighting upgrade. Contract value $410k. Completed on programme. Defects liability closed with no outstanding items. Suitable evidence for sports surface Class P1 requirement."
+    },
+    {
+      "id": "kb-ref-2",
+      "title": "Reference \u2014 Greenfield Aquatic Centre plant room (2021)",
+      "source": "references/greenfield_aquatic_2021.pdf",
+      "page": 1,
+      "tags": [
+        "HVAC",
+        "reference",
+        "public building"
+      ],
+      "text": "Client contact: M. Okonkwo, Capital Projects, Greenfield Leisure (fictional). Scope: plant room AHU replacement and heat recovery retrofit in an occupied public leisure building. Value $1.1M. Duration 14 weeks with weekend changeovers. ISO 9001 certificate provided with handover pack."
+    },
+    {
+      "id": "kb-cv-pm",
+      "title": "CV \u2014 Samira Haddad, Project Manager",
+      "source": "cvs/cv_samira_haddad.pdf",
+      "page": 1,
+      "tags": [
+        "team",
+        "project manager",
+        "CV"
+      ],
+      "text": "Samira Haddad \u2014 Project Manager, Apex Build Co. 11 years experience on public building works. Recent: Riverside Leisure HVAC ($920k), Oakwood envelope ($640k), Harborview finishes ($410k). Holds CSCS black card equivalent and SMSTS. Available full-time from November 2026. Fluent English; based within 40 minutes of Northbridge."
+    },
+    {
+      "id": "kb-cv-sup",
+      "title": "CV \u2014 Tomasz Lewandowski, Site Supervisor",
+      "source": "cvs/cv_tomasz_lewandowski.pdf",
+      "page": 1,
+      "tags": [
+        "team",
+        "supervisor",
+        "CV",
+        "H&S"
+      ],
+      "text": "Tomasz Lewandowski \u2014 Site Supervisor. 9 years site supervision on education and leisure projects. Strong fa\u00e7ade and temporary weatherproofing experience (Oakwood 2023). First-aid and working-at-height tickets current. Proposed resident supervisor for the 14-week hall closure window."
+    },
+    {
+      "id": "kb-cv-hvac",
+      "title": "CV \u2014 Priya Nair, HVAC Lead",
+      "source": "cvs/cv_priya_nair.pdf",
+      "page": 1,
+      "tags": [
+        "team",
+        "HVAC",
+        "CV",
+        "commissioning"
+      ],
+      "text": "Priya Nair \u2014 HVAC Lead / Commissioning Engineer. 8 years mechanical packages. Certifications: heat-recovery commissioning, BMS integration, duct leakage testing. Led Riverside AHU changeover. Proposed to supervise plant selection to meet \u226570% heat recovery and post-install trend logging."
+    },
+    {
+      "id": "kb-cert-iso",
+      "title": "Certificate \u2014 ISO 9001:2015 Quality Management",
+      "source": "certificates/iso9001_apex.pdf",
+      "page": 1,
+      "tags": [
+        "quality",
+        "ISO",
+        "certificate"
+      ],
+      "text": "Apex Build Co. holds ISO 9001:2015 certificate #QMS-88421 (fictional registrar NorthPeak Cert). Scope: design-assist and construction of building services and renovation works. Valid through 2027-06-30. Surveillance audit passed 2026-03."
+    },
+    {
+      "id": "kb-cert-ins",
+      "title": "Insurance certificate summary",
+      "source": "certificates/insurance_summary.pdf",
+      "page": 1,
+      "tags": [
+        "insurance",
+        "liability",
+        "PI"
+      ],
+      "text": "Public liability: $10M any one occurrence (exceeds $5M requirement). Professional indemnity for temporary works design: $3M aggregate (exceeds $2M). Employers liability as required by local law. Broker: Atlas Cover Partners (fictional). Renewal date 2027-01-15."
+    },
+    {
+      "id": "kb-equip",
+      "title": "Plant & equipment list \u2014 fa\u00e7ade and HVAC packages",
+      "source": "equipment/plant_list_2026.xlsx",
+      "page": 1,
+      "tags": [
+        "equipment",
+        "crane",
+        "scaffold",
+        "AHU"
+      ],
+      "text": "Owned/leased plant available for Northbridge hall: 45t mobile crane (weekend hire agreement), 800 m\u00b2 system scaffold with fans, shrink-wrap weather kit, two 12k m\u00b3/h temporary AHUs for occupied-zone tempering, duct fabrication bench, MEWPs (x3), floor protection rolls for Class P1 install. Logistics yard 12 km from site."
+    },
+    {
+      "id": "kb-waste",
+      "title": "Environmental note \u2014 construction waste diversion",
+      "source": "policies/waste_diversion_policy.pdf",
+      "page": 2,
+      "tags": [
+        "environment",
+        "waste",
+        "70%"
+      ],
+      "text": "Apex waste policy targets \u226575% diversion from landfill on public renovation jobs. Segregated skips for metal, clean timber, plasterboard, and mixed. Monthly waste register issued to client. On Oakwood envelope, measured diversion reached 78%. Suitable response to the \u226570% diversion requirement."
+    },
+    {
+      "id": "kb-programme",
+      "title": "Template programme \u2014 14-week sports hall closure",
+      "source": "past_proposals/programme_14w_template.docx",
+      "page": 1,
+      "tags": [
+        "programme",
+        "Gantt",
+        "milestones",
+        "weather"
+      ],
+      "text": "Template sequence: W1\u20132 enablement & soft strip; W3\u20136 fa\u00e7ade + temporary weatherproofing; W3\u20138 HVAC plant & risers (parallel); W8 changing rooms handover; W9\u201312 sports floor & finishes; W13 commissioning; W14 snagging & demobilise. Weather float: 8 working days on fa\u00e7ade. Matches buyer maximum continuous closure of 14 weeks."
+    },
+    {
+      "id": "kb-qc",
+      "title": "QC plan excerpt \u2014 sports floor Class P1",
+      "source": "policies/qc_sports_floor.pdf",
+      "page": 3,
+      "tags": [
+        "quality",
+        "sports floor",
+        "P1",
+        "finishes"
+      ],
+      "text": "Incoming board moisture checks, adhesive batch records, rebound and shock absorption spot tests against Class P1, and photographic hold-points before line marking. Color match against buyer sample board photographed under 4000K lighting. Used successfully at Harborview Arena."
+    }
+  ]
+}

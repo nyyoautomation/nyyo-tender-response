@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Public tender response pack — Nyyo Automation</title>
+  <meta name="description" content="Turn a construction tender package into a review-ready proposal pack. Local tool you own — sample demo, no signup. Nyyo Automation." />
+  <meta name="theme-color" content="#050814" />
+  <meta property="og:title" content="Public tender response pack — Nyyo Automation" />
+  <meta property="og:description" content="Sample tender → scored criteria → review-ready DOCX. Local AI you own. Price on request." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://nyyoautomation.github.io/nyyo-tender-response/assets/og.png" />
+  <meta property="og:url" content="https://nyyoautomation.github.io/nyyo-tender-response/" />
+  <link rel="icon" href="./assets/logo.png" type="image/png" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js" defer></script>
+  <script src="./js/bm25.js" defer></script>
+  <script src="./js/app.js" defer></script>
+</head>
+<body>
+<!-- NYYO_PREMIUM_V1 -->
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="https://github.com/nyyoautomation">
+        <img src="./assets/logo.png" alt="" width="34" height="34" />
+        <span>Nyyo Automation</span>
+      </a>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <a class="btn btn-ghost" href="https://nyyoautomation.github.io/nyyoautomation/demos/">All demos</a>
+        <a class="btn btn-primary icon-btn" href="https://laborx.com/freelancers/users/id475124" rel="noopener"><i data-lucide="briefcase"></i> Hire me</a>
+      </div>
+    </div>
+
+    <header class="hero" id="hero">
+      <div class="hero-inner">
+        <span class="tag"><span class="dot"></span> Live sample · fictional tender · no signup</span>
+        <h1>Construction bid helper — <span class="grad">review-ready tender pack</span></h1>
+        <p class="lead">
+          Load a sample public-tender package, see scored criteria light up, search your past files, fill price &amp; team, then export a proposal pack with citations.
+          Built for small construction firms — you <strong>own</strong> a local tool; data stays on your machines.
+        </p>
+        <div class="hero-meta">
+          <span><strong>Price on request</strong></span>
+          <span><strong>Local AI</strong> by default</span>
+          <span><strong>Crypto OK</strong></span>
+          <span><strong>Remote · Worldwide</strong></span>
+        </div>
+        <div class="disclaimer-banner" role="note">
+          <i data-lucide="shield-alert" style="width:18px;height:18px"></i>
+          <div><strong>Human review required.</strong> Output is a draft for your team to check before any bid is submitted. You remain solely responsible for what you submit to the contracting authority. This page uses <em>fictional</em> sample documents only.</div>
+        </div>
+      </div>
+    </header>
+
+    <section class="steps" aria-label="How it works" id="how">
+      <div class="step" data-step="1"><span class="n">1</span><h3>Load tender</h3><p>Sample package → requirements, scores, deadlines.</p></div>
+      <div class="step" data-step="2"><span class="n">2</span><h3>Search past files</h3><p>In-browser search with citations to source pages.</p></div>
+      <div class="step" data-step="3"><span class="n">3</span><h3>Enter key inputs</h3><p>Price, schedule, team, variants — your numbers.</p></div>
+      <div class="step" data-step="4"><span class="n">4</span><h3>Export pack</h3><p>Proposal + compliance matrix + checklist → DOCX/PDF.</p></div>
+    </section>
+
+    <!-- WOW PIPELINE -->
+    <section class="pipeline" id="pipeline" aria-label="Animated extraction pipeline">
+      <div class="pipeline-stage" id="pipeNodes">
+        <div class="pipe-node" data-node="docs"><div class="ico"><i data-lucide="files"></i></div><strong>Tender files</strong><small>Rules · Specs · Prices</small></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-node" data-node="extract"><div class="ico"><i data-lucide="scan-text"></i></div><strong>Extract</strong><small>sample · pre-computed</small></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-node" data-node="score"><div class="ico"><i data-lucide="gauge"></i></div><strong>Score criteria</strong><small>weights light up</small></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-node" data-node="cover"><div class="ico"><i data-lucide="circle-check"></i></div><strong>Coverage</strong><small>compliance ring</small></div>
+      </div>
+      <div class="fly-docs" id="flyDocs" aria-hidden="true"></div>
+      <div class="actions-row">
+        <button type="button" class="btn btn-primary" id="btnRun"><i data-lucide="play" style="width:16px;height:16px"></i> Run sample extraction</button>
+        <span class="badge-sample" id="sampleBadge">Sample · pre-computed extraction</span>
+      </div>
+    </section>
+
+    <!-- STEP 1: Extraction results -->
+    <section class="panel hidden" id="panelExtract" aria-label="Extracted tender data">
+      <div class="panel-head">
+        <h2><i data-lucide="sparkles" style="width:18px;height:18px;vertical-align:-3px"></i> Extracted from sample package</h2>
+        <span class="badge-sample">Sample · pre-computed</span>
+      </div>
+      <p style="margin:0 0 12px;color:var(--muted);font-size:0.84rem" id="tenderTitle"></p>
+
+      <h3 style="font-size:0.9rem;margin:0 0 8px">Scoring criteria</h3>
+      <div class="criteria" id="criteria"></div>
+
+      <div class="score-wrap" style="margin:18px 0">
+        <div class="ring" id="coverRing" aria-label="Coverage score"><span id="coverPct">0%</span></div>
+        <div class="score-legend">
+          <strong>Requirement coverage (demo)</strong><br />
+          As past-file matches and your form inputs map to requirements, this ring fills.
+          In production it tracks cited answers — still always reviewed by a human.
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px" class="extract-grid">
+        <div>
+          <h3 style="font-size:0.9rem;margin:0 0 8px">Deadlines</h3>
+          <table class="table" id="deadlines"><thead><tr><th>Event</th><th>When</th></tr></thead><tbody></tbody></table>
+        </div>
+        <div>
+          <h3 style="font-size:0.9rem;margin:0 0 8px">Required documents</h3>
+          <table class="table" id="docs"><thead><tr><th>Document</th><th></th></tr></thead><tbody></tbody></table>
+        </div>
+      </div>
+
+      <h3 style="font-size:0.9rem;margin:16px 0 8px">Requirements <span class="badge-sample">from sample specs</span></h3>
+      <div class="req-list" id="reqs"></div>
+      <div id="alerts" style="margin-top:12px"></div>
+    </section>
+
+    <!-- STEP 2: Knowledge base -->
+    <section class="panel" id="panelKb" aria-label="Knowledge base search">
+      <div class="panel-head">
+        <h2><i data-lucide="library" style="width:18px;height:18px;vertical-align:-3px"></i> Knowledge base — past files</h2>
+        <span class="badge-live">Live · in-browser BM25</span>
+      </div>
+      <p style="margin:0 0 10px;color:var(--muted);font-size:0.84rem">Fictional contractor <strong>Apex Build Co.</strong> — past proposals, references, CVs, certificates, equipment. Search is real in your browser; results cite source file + page.</p>
+      <div class="search-row">
+        <input id="kbQ" type="search" placeholder="Try: heat recovery, Class P1, project manager…" autocomplete="off" />
+        <button type="button" class="btn btn-ghost" id="btnKb">Search</button>
+      </div>
+      <div class="chips" id="kbChips"></div>
+      <div id="kbHits"></div>
+    </section>
+
+    <!-- STEP 3: Form -->
+    <section class="panel" id="panelForm" aria-label="Key bid inputs">
+      <div class="panel-head">
+        <h2><i data-lucide="clipboard-list" style="width:18px;height:18px;vertical-align:-3px"></i> Your key inputs</h2>
+        <span class="badge-live">Live · your numbers</span>
+      </div>
+      <form class="form-grid" id="bidForm">
+        <div class="field">
+          <label for="price">Total bid price (USD)</label>
+          <input id="price" name="price" type="number" min="0" step="1000" value="1785000" required />
+        </div>
+        <div class="field">
+          <label for="weeks">Hall closure (weeks, max 14)</label>
+          <input id="weeks" name="weeks" type="number" min="1" max="14" value="14" required />
+        </div>
+        <div class="field">
+          <label for="pm">Project manager</label>
+          <select id="pm" name="pm">
+            <option value="Samira Haddad">Samira Haddad (11 yrs)</option>
+            <option value="Other">Other (edit in DOCX)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="variant">Heat-recovery variant?</label>
+          <select id="variant" name="variant">
+            <option value="no">No — base offer only</option>
+            <option value="yes">Yes — price on schedule tab V</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label for="notes">Notes / commitments</label>
+          <textarea id="notes" name="notes" placeholder="e.g. We attend the optional site visit; waste diversion target 75%…">Attending optional site visit. Waste diversion target 75%. Changing-rooms handover at week 8.</textarea>
+        </div>
+      </form>
+      <div class="actions-row">
+        <button type="button" class="btn btn-primary" id="btnGenerate"><i data-lucide="wand-sparkles" style="width:16px;height:16px"></i> Generate review-ready pack</button>
+      </div>
+    </section>
+
+    <!-- STEP 4: Generated pack -->
+    <section class="panel hidden" id="panelPack" aria-label="Generated response pack">
+      <div class="panel-head">
+        <h2><i data-lucide="file-check-2" style="width:18px;height:18px;vertical-align:-3px"></i> Review-ready pack</h2>
+        <span class="badge-live">Assembled in browser · human review required</span>
+      </div>
+      <div class="disclaimer-banner" style="margin-bottom:14px">
+        <i data-lucide="shield-alert" style="width:18px;height:18px"></i>
+        <div>Draft only. Check every claim and citation before submitting a real bid.</div>
+      </div>
+      <div class="proposal-out" id="proposalOut"></div>
+      <h3 style="font-size:0.9rem;margin:16px 0 8px">Compliance matrix</h3>
+      <div style="overflow:auto">
+        <table class="table" id="matrix"><thead><tr><th>ID</th><th>Requirement</th><th>Response status</th><th>Citation</th></tr></thead><tbody></tbody></table>
+      </div>
+      <h3 style="font-size:0.9rem;margin:16px 0 8px">Document checklist</h3>
+      <table class="table" id="checklist"><thead><tr><th>Document</th><th>Status</th></tr></thead><tbody></tbody></table>
+      <div class="actions-row">
+        <button type="button" class="btn btn-primary" id="btnDocx"><i data-lucide="file-down" style="width:16px;height:16px"></i> Download DOCX</button>
+        <button type="button" class="btn btn-ghost" id="btnPdf"><i data-lucide="printer" style="width:16px;height:16px"></i> Export PDF</button>
+      </div>
+    </section>
+
+    <!-- Own it locally -->
+    <section class="panel" id="own" aria-label="Own it, run it locally">
+      <div class="panel-head">
+        <h2><i data-lucide="hard-drive" style="width:18px;height:18px;vertical-align:-3px"></i> Own it, run it locally</h2>
+      </div>
+      <div class="own-grid">
+        <div class="own-card">
+          <h3><i data-lucide="lock" style="width:16px;height:16px"></i> Your data stays yours</h3>
+          <ul>
+            <li>Tool installed on <strong>your</strong> machines — no subscription lock-in for the core local app.</li>
+            <li><strong>Local AI by default</strong> via Ollama (Mistral / Qwen) — documents need not leave your network.</li>
+            <li>Optional EU-hosted API using <strong>your</strong> provider key (zero retention where supported).</li>
+            <li>Phase 1 connectors: <strong>Google Drive</strong> &amp; <strong>SharePoint / OneDrive</strong>.</li>
+            <li>Phase 2: tender alerts from public procurement portals (generic feeds — details on request).</li>
+          </ul>
+          <p style="margin:10px 0 0;font-size:0.8rem"><a href="./install-kit/">Install kit outline →</a> (free; production package delivered with setup)</p>
+        </div>
+        <div class="price-box">
+          <div class="tag" style="margin:0 auto 8px">Pricing</div>
+          <div class="big">Price on request</div>
+          <div class="sub">One-time setup + optional low-cost monthly maintenance.<br />Install kit / core local tool: free.</div>
+          <div class="deploy-opts" style="text-align:left;margin-top:14px">
+            <div class="deploy-opt on">
+              <strong><i data-lucide="building-2" style="width:14px;height:14px;vertical-align:-2px"></i> Installed at your office</strong>
+              <span class="pill ok">Recommended</span>
+              <p>On your premises. Runs offline. You own it.</p>
+            </div>
+            <div class="deploy-opt">
+              <strong><i data-lucide="cloud" style="width:14px;height:14px;vertical-align:-2px"></i> Hosted for you</strong>
+              <span class="pill">On request</span>
+              <p>We can host it later with a well-known European provider.</p>
+            </div>
+          </div>
+          <a class="btn btn-primary" style="margin-top:14px" href="https://laborx.com/freelancers/users/id475124" rel="noopener">Ask for a quote</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Zero access to your data -->
+    <section class="panel" id="trust" aria-label="Zero access to your data">
+      <div class="panel-head">
+        <h2><i data-lucide="shield-check" style="width:18px;height:18px;vertical-align:-3px"></i> Zero access to your data</h2>
+      </div>
+      <p style="margin:0 0 14px;color:var(--muted);font-size:0.88rem">
+        We never take control of your computer. No remote-access tools, no passwords, no unattended sessions.
+        Your tenders and prices stay on <strong>your</strong> machines.
+      </p>
+      <div class="trust-grid" id="trustCards">
+        <div class="own-card"><h3><i data-lucide="badge-check" style="width:16px;height:16px"></i> Signed installer</h3><p class="trust-p">Open-source code on GitHub — your IT person can audit every line before you run it.</p></div>
+        <div class="own-card"><h3><i data-lucide="wifi-off" style="width:16px;height:16px"></i> Fully offline</h3><p class="trust-p">Local AI by default (Ollama + Mistral / Qwen). Works without sending documents to the cloud.</p></div>
+        <div class="own-card"><h3><i data-lucide="eye-off" style="width:16px;height:16px"></i> We never see your data</h3><p class="trust-p">Bids, prices, and past files stay on your PC or mini-PC. We have no backdoor.</p></div>
+        <div class="own-card"><h3><i data-lucide="download" style="width:16px;height:16px"></i> You pull updates</h3><p class="trust-p">Download updates yourself, when you want. Nothing installs silently in the background.</p></div>
+        <div class="own-card"><h3><i data-lucide="video" style="width:16px;height:16px"></i> Support: you share screen</h3><p class="trust-p">Video call help where <strong>you</strong> share your screen. We guide — we never take control.</p></div>
+        <div class="own-card"><h3><i data-lucide="handshake" style="width:16px;height:16px"></i> Risk-free trial + NDA</h3><p class="trust-p">NDA signed first. You pay only after seeing the tool work on your machine.</p></div>
+      </div>
+      <h3 style="font-size:0.92rem;margin:18px 0 10px">How you receive the tool</h3>
+      <div class="own-grid" style="grid-template-columns:repeat(3,1fr)" id="deliveryCards">
+        <div class="own-card">
+          <h3><i data-lucide="package" style="width:16px;height:16px"></i> One-click signed installer</h3>
+          <ul>
+            <li>Single <strong>.exe</strong> / <strong>.dmg</strong> (MVP ships this way).</li>
+            <li>Local AI included, desktop icon, drop-folder for past bid files.</li>
+            <li>You double-click — nothing phones home.</li>
+          </ul>
+        </div>
+        <div class="own-card">
+          <h3><i data-lucide="server" style="width:16px;height:16px"></i> Plug &amp; play mini-PC</h3>
+          <ul>
+            <li>Preconfigured device shipped to your office.</li>
+            <li>Plug in power + network, open the desktop icon.</li>
+            <li>No remote tunnel, no always-on support link.</li>
+          </ul>
+        </div>
+        <div class="own-card">
+          <h3><i data-lucide="user-round-check" style="width:16px;height:16px"></i> Install while you watch</h3>
+          <ul>
+            <li>By video call (<strong>you</strong> share screen) or on site.</li>
+            <li>We talk you through clicks — we never take control.</li>
+            <li>Your IT can sit in and audit the signed package.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+<!-- Honest limits -->
+    <section class="panel" id="limits" aria-label="Honest limits">
+      <div class="panel-head">
+        <h2><i data-lucide="badge-alert" style="width:18px;height:18px;vertical-align:-3px"></i> Honest limits</h2>
+      </div>
+      <ul class="limits">
+        <li><strong>Hallucination risk</strong> — AI can invent a compliance claim; citations reduce risk, they don’t remove it.</li>
+        <li><strong>Human review is mandatory</strong> — site leads and bid managers sign off before submission.</li>
+        <li><strong>No automatic pricing math</strong> — bill-of-quantities prices come from you, not the model.</li>
+        <li><strong>No guaranteed score</strong> — we structure to the published criteria; we don’t predict the jury.</li>
+        <li><strong>Responsibility stays with the bidder</strong> — Nyyo Automation does not submit bids on your behalf.</li>
+        <li><strong>This demo</strong> — extraction for the sample package is <em>pre-computed</em>; search, form, assembly, and DOCX export run live in your browser on fictional data.</li>
+      </ul>
+    </section>
+
+    <footer style="text-align:center;color:var(--muted);font-size:0.78rem;padding:20px 0 90px">
+      <p>Nyyo Automation · Remote · Worldwide · Sample data labeled · <a href="https://github.com/nyyoautomation/nyyo-tender-response">Source</a></p>
+    </footer>
+  </div>
+
+  <div class="sticky-hire">
+    <a class="btn btn-primary" href="https://laborx.com/freelancers/users/id475124" rel="noopener">Hire me on LaborX</a>
+    <a class="btn btn-ghost" href="#own">Own it locally</a>
+    <button type="button" class="btn btn-ghost" id="btnRunSticky">Run sample</button>
+  </div>
+
+  <!-- Print-only pack -->
+  <div id="printRoot" class="hidden"></div>
+</body>
+</html>

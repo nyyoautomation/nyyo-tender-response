@@ -1,0 +1,305 @@
+{
+  "meta": {
+    "label": "Sample \u00b7 pre-computed",
+    "tender_id": "NMW-2026-HALL-014",
+    "title": "Community sports hall renovation \u2014 HVAC, envelope & finishes",
+    "buyer": "Northbridge Municipal Works Authority",
+    "buyer_note": "Fictional public body for demo purposes",
+    "procedure": "Open competitive procedure (works)",
+    "cpv_example": "45212200 \u2014 Construction work for sports facilities",
+    "estimated_value_usd": 1850000,
+    "currency": "USD",
+    "lots": 1,
+    "extracted_at": "2026-10-12T09:40:00Z",
+    "source_files": [
+      {
+        "id": "rules",
+        "name": "01_Rules_of_Consultation.pdf",
+        "pages": 18,
+        "type": "Rules"
+      },
+      {
+        "id": "admin",
+        "name": "02_Admin_Specifications.pdf",
+        "pages": 24,
+        "type": "Admin specs"
+      },
+      {
+        "id": "tech",
+        "name": "03_Technical_Specifications.pdf",
+        "pages": 42,
+        "type": "Technical specs"
+      },
+      {
+        "id": "price",
+        "name": "04_Price_Schedule.xlsx",
+        "pages": 6,
+        "type": "Price schedule"
+      }
+    ]
+  },
+  "deadlines": [
+    {
+      "label": "Clarification questions deadline",
+      "date": "2026-11-03",
+      "time": "17:00",
+      "tz": "UTC"
+    },
+    {
+      "label": "Bid submission deadline",
+      "date": "2026-11-20",
+      "time": "12:00",
+      "tz": "UTC"
+    },
+    {
+      "label": "Bid validity period",
+      "date": "2027-02-18",
+      "note": "90 days from submission"
+    },
+    {
+      "label": "Expected site visit (optional)",
+      "date": "2026-10-28",
+      "time": "10:00",
+      "tz": "UTC"
+    },
+    {
+      "label": "Award decision target",
+      "date": "2026-12-15",
+      "note": "Indicative"
+    }
+  ],
+  "scoring": [
+    {
+      "id": "C1",
+      "name": "Technical approach & methodology",
+      "weight": 35,
+      "description": "Quality of method statement, sequencing, quality control, and risk management for HVAC + envelope works."
+    },
+    {
+      "id": "C2",
+      "name": "Relevant experience & references",
+      "weight": 25,
+      "description": "Comparable sports / public building renovations in the last 8 years; client satisfaction evidence."
+    },
+    {
+      "id": "C3",
+      "name": "Team & key personnel",
+      "weight": 15,
+      "description": "Named project manager, site supervisor, HVAC lead; CVs and availability."
+    },
+    {
+      "id": "C4",
+      "name": "Programme & delivery certainty",
+      "weight": 15,
+      "description": "Realistic Gantt, milestones, float, weather contingency for envelope works."
+    },
+    {
+      "id": "C5",
+      "name": "Price",
+      "weight": 10,
+      "description": "Evaluated on submitted price schedule; arithmetical check by buyer."
+    }
+  ],
+  "requirements": [
+    {
+      "id": "R01",
+      "category": "HVAC",
+      "text": "Replace existing AHUs with two high-efficiency units \u2265 12,000 m\u00b3/h each; provide heat recovery \u2265 70%.",
+      "source": "03_Technical_Specifications.pdf",
+      "page": 8,
+      "criterion": "C1"
+    },
+    {
+      "id": "R02",
+      "category": "HVAC",
+      "text": "Maintain occupied-zone temperature 18\u201322\u00b0C during construction in adjoining rooms still in use.",
+      "source": "03_Technical_Specifications.pdf",
+      "page": 9,
+      "criterion": "C1"
+    },
+    {
+      "id": "R03",
+      "category": "Envelope",
+      "text": "Replace south fa\u00e7ade glazing with double-glazed units Uw \u2264 1.4 W/m\u00b2K; retain structural mullions.",
+      "source": "03_Technical_Specifications.pdf",
+      "page": 14,
+      "criterion": "C1"
+    },
+    {
+      "id": "R04",
+      "category": "Finishes",
+      "text": "Sports hall floor: shock-absorbing sports surface Class P1; colour to match buyer sample board.",
+      "source": "03_Technical_Specifications.pdf",
+      "page": 22,
+      "criterion": "C1"
+    },
+    {
+      "id": "R05",
+      "category": "Safety",
+      "text": "Full temporary works design for roof plant crane lifts; method statement approved before mobilisation.",
+      "source": "02_Admin_Specifications.pdf",
+      "page": 11,
+      "criterion": "C1"
+    },
+    {
+      "id": "R06",
+      "category": "Programme",
+      "text": "Maximum continuous hall closure: 14 calendar weeks; phased handover of changing rooms at week 8.",
+      "source": "01_Rules_of_Consultation.pdf",
+      "page": 6,
+      "criterion": "C4"
+    },
+    {
+      "id": "R07",
+      "category": "Team",
+      "text": "Project manager must hold \u2265 8 years works experience on public buildings > $1M.",
+      "source": "01_Rules_of_Consultation.pdf",
+      "page": 9,
+      "criterion": "C3"
+    },
+    {
+      "id": "R08",
+      "category": "References",
+      "text": "Provide at least two completed references of sports or education facility renovation within 8 years.",
+      "source": "01_Rules_of_Consultation.pdf",
+      "page": 10,
+      "criterion": "C2"
+    },
+    {
+      "id": "R09",
+      "category": "Quality",
+      "text": "ISO 9001 (or equivalent) quality management evidence, or describe equivalent QC plan.",
+      "source": "02_Admin_Specifications.pdf",
+      "page": 4,
+      "criterion": "C1"
+    },
+    {
+      "id": "R10",
+      "category": "Environment",
+      "text": "Construction waste diversion from landfill \u2265 70%; waste register submitted monthly.",
+      "source": "02_Admin_Specifications.pdf",
+      "page": 16,
+      "criterion": "C1"
+    },
+    {
+      "id": "R11",
+      "category": "Insurance",
+      "text": "Public liability \u2265 $5M; professional indemnity \u2265 $2M for temporary works designer.",
+      "source": "02_Admin_Specifications.pdf",
+      "page": 7,
+      "criterion": "C3"
+    },
+    {
+      "id": "R12",
+      "category": "Variants",
+      "text": "Variants allowed only for heat-recovery technology; must be priced separately on schedule tab V.",
+      "source": "01_Rules_of_Consultation.pdf",
+      "page": 12,
+      "criterion": "C5"
+    },
+    {
+      "id": "R13",
+      "category": "Subcontracting",
+      "text": "Declare any subcontract > 20% of contract value; HVAC may be subcontracted subject to approval.",
+      "source": "01_Rules_of_Consultation.pdf",
+      "page": 13,
+      "criterion": "C2"
+    },
+    {
+      "id": "R14",
+      "category": "Warranty",
+      "text": "24-month defects liability for HVAC plant; 12 months for finishes.",
+      "source": "02_Admin_Specifications.pdf",
+      "page": 19,
+      "criterion": "C1"
+    },
+    {
+      "id": "R15",
+      "category": "Programme",
+      "text": "Include weather contingency of \u2265 8 working days for fa\u00e7ade works.",
+      "source": "03_Technical_Specifications.pdf",
+      "page": 31,
+      "criterion": "C4"
+    }
+  ],
+  "required_documents": [
+    {
+      "id": "D1",
+      "name": "Company registration extract",
+      "mandatory": true,
+      "notes": "Not older than 3 months"
+    },
+    {
+      "id": "D2",
+      "name": "Financial statements (last 2 years)",
+      "mandatory": true,
+      "notes": "Or bank comfort letter"
+    },
+    {
+      "id": "D3",
+      "name": "Technical proposal (method statement)",
+      "mandatory": true,
+      "notes": "Structured by scoring criteria"
+    },
+    {
+      "id": "D4",
+      "name": "Completed price schedule",
+      "mandatory": true,
+      "notes": "No alterations to item codes"
+    },
+    {
+      "id": "D5",
+      "name": "Key personnel CVs (PM, supervisor, HVAC lead)",
+      "mandatory": true,
+      "notes": "Max 3 pages each"
+    },
+    {
+      "id": "D6",
+      "name": "Project references (\u2265 2)",
+      "mandatory": true,
+      "notes": "With client contact"
+    },
+    {
+      "id": "D7",
+      "name": "Insurance certificates",
+      "mandatory": true,
+      "notes": "PL + PI"
+    },
+    {
+      "id": "D8",
+      "name": "Quality / H&S policy summary",
+      "mandatory": true,
+      "notes": "Or ISO certificates"
+    },
+    {
+      "id": "D9",
+      "name": "ESPD / single procurement declaration",
+      "mandatory": true,
+      "notes": "Buyer template"
+    },
+    {
+      "id": "D10",
+      "name": "Variant proposal (optional)",
+      "mandatory": false,
+      "notes": "Only if submitting heat-recovery variant"
+    }
+  ],
+  "alerts": [
+    {
+      "level": "warn",
+      "text": "Hall closure capped at 14 weeks \u2014 programme is a scored criterion."
+    },
+    {
+      "level": "warn",
+      "text": "Price weight is only 10% \u2014 technical quality dominates award."
+    },
+    {
+      "level": "info",
+      "text": "Variants limited to heat-recovery technology (tab V)."
+    },
+    {
+      "level": "info",
+      "text": "Optional site visit on 2026-10-28 \u2014 attendance recommended for fa\u00e7ade survey."
+    }
+  ]
+}
