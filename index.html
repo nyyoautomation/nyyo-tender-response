@@ -4,13 +4,20 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Public tender response pack — Nyyo Automation</title>
-  <meta name="description" content="Turn a construction tender package into a review-ready proposal pack. Local tool you own — sample demo, no signup. Nyyo Automation." />
+  <meta name="description" content="Turn a construction tender package into a review-ready proposal pack. Online first, AI hosted in Europe, never trained on your data. Plans from €79/month. Sample demo, no signup." />
+  <link rel="canonical" href="https://nyyoautomation.github.io/nyyo-tender-response/" />
+  <link rel="alternate" hreflang="en" href="https://nyyoautomation.github.io/nyyo-tender-response/" />
+  <link rel="alternate" hreflang="fr" href="https://nyyoautomation.github.io/nyyo-tender-response/fr/" />
+  <link rel="alternate" hreflang="x-default" href="https://nyyoautomation.github.io/nyyo-tender-response/" />
   <meta name="theme-color" content="#050814" />
   <meta property="og:title" content="Public tender response pack — Nyyo Automation" />
-  <meta property="og:description" content="Sample tender → scored criteria → review-ready DOCX. Local AI you own. Price on request." />
+  <meta property="og:description" content="Sample tender → scored criteria → review-ready DOCX. AI hosted in Europe, isolated workspace per company. From €79/month." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://nyyoautomation.github.io/nyyo-tender-response/assets/og.png" />
   <meta property="og:url" content="https://nyyoautomation.github.io/nyyo-tender-response/" />
+  <meta property="og:locale" content="en_GB" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" href="./assets/logo.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -31,8 +38,9 @@
         <span class="brand-name">Nyyo Automation</span>
       </a>
       <div class="top-actions">
+        <a class="btn btn-ghost lang-toggle" href="./fr/" hreflang="fr" lang="fr" aria-label="Version française">FR</a>
         <a class="btn btn-ghost" href="https://nyyoautomation.github.io/nyyoautomation/demos/" aria-label="All demos"><i data-lucide="layout-grid"></i><span class="lbl">All demos</span></a>
-        <a class="btn btn-primary" href="https://laborx.com/freelancers/users/id475124" rel="noopener" aria-label="Hire me"><i data-lucide="briefcase"></i><span class="lbl">Hire me</span></a>
+        <a class="btn btn-primary" href="mailto:LaborX (https://laborx.com/freelancers/users/id475124)?subject=Tender%20response%20tool" aria-label="Contact us by email"><i data-lucide="mail"></i><span class="lbl">Contact</span></a>
       </div>
     </div>
 
@@ -42,11 +50,12 @@
         <h1>Construction bid helper — <span class="grad">review-ready tender pack</span></h1>
         <p class="lead">
           Load a sample public-tender package, see scored criteria light up, search your past files, fill price &amp; team, then export a proposal pack with citations.
-          Built for small construction firms — you <strong>own</strong> a local tool; data stays on your machines.
+          Built for small construction firms.
         </p>
+        <p class="host-line"><i data-lucide="cloud"></i><span><strong>Online first:</strong> an isolated workspace per company, AI hosted in Europe, never trained on your data; a fully on-premises version is available as an option.</span></p>
         <div class="hero-meta">
-          <span><strong>Price on request</strong></span>
-          <span><strong>Local AI</strong> by default</span>
+          <span>From <strong>€79/month</strong></span>
+          <span><strong>AI hosted in Europe</strong></span>
           <span><strong>Remote · Worldwide</strong></span>
         </div>
         <div class="disclaimer-banner" role="note">
@@ -68,7 +77,7 @@
       <div class="pipeline-stage" id="pipeNodes">
         <div class="pipe-node" data-node="docs"><div class="ico"><i data-lucide="files"></i></div><strong>Tender files</strong><small>Rules · Specs · Prices</small></div>
         <span class="pipe-arrow">→</span>
-        <div class="pipe-node" data-node="extract"><div class="ico"><i data-lucide="scan-text"></i></div><strong>Extract</strong><small>sample · pre-computed</small></div>
+        <div class="pipe-node" data-node="extract"><div class="ico"><i data-lucide="scan-text"></i></div><strong>Extract</strong><small>pre-analysed sample</small></div>
         <span class="pipe-arrow">→</span>
         <div class="pipe-node" data-node="score"><div class="ico"><i data-lucide="gauge"></i></div><strong>Score criteria</strong><small>weights light up</small></div>
         <span class="pipe-arrow">→</span>
@@ -83,16 +92,16 @@
       </div>
       <div class="fly-docs" id="flyDocs" aria-hidden="true"></div>
       <div class="actions-row">
-        <button type="button" class="btn btn-primary" id="btnRun"><i data-lucide="play" style="width:16px;height:16px"></i> Run sample extraction</button>
-        <span class="badge-sample" id="sampleBadge">Sample · pre-computed extraction</span>
+        <button type="button" class="btn btn-primary" id="btnRun"><i data-lucide="play" style="width:16px;height:16px"></i> Run the pre-analysed sample</button>
+        <span class="badge-sample" id="sampleBadge">Pre-analysed sample</span>
       </div>
     </section>
 
     <!-- STEP 1: Extraction results -->
     <section class="panel hidden" id="panelExtract" aria-label="Extracted tender data">
       <div class="panel-head">
-        <h2><i data-lucide="sparkles" style="width:18px;height:18px;vertical-align:-3px"></i> Extracted from sample package</h2>
-        <span class="badge-sample">Sample · pre-computed</span>
+        <h2><i data-lucide="sparkles" style="width:18px;height:18px;vertical-align:-3px"></i> Pre-analysed sample package</h2>
+        <span class="badge-sample">Pre-analysed sample</span>
       </div>
       <p style="margin:0 0 12px;color:var(--muted);font-size:0.84rem" id="tenderTitle"></p>
 
@@ -201,87 +210,103 @@
       </div>
     </section>
 
-    <!-- Own it locally -->
-    <section class="panel" id="own" aria-label="Own it, run it locally">
+    <!-- Plans & hosting -->
+    <section class="panel" id="plans" aria-label="Plans and hosting">
       <div class="panel-head">
-        <h2><i data-lucide="hard-drive" style="width:18px;height:18px;vertical-align:-3px"></i> Own it, run it locally</h2>
+        <h2><i data-lucide="cloud" style="width:18px;height:18px;vertical-align:-3px"></i> Plans &amp; hosting</h2>
       </div>
-      <div class="own-grid">
-        <div class="own-card">
-          <h3><i data-lucide="lock" style="width:16px;height:16px"></i> Your data stays yours</h3>
+      <div class="host-grid">
+        <div class="own-card host-card default">
+          <span class="pill ok">Default</span>
+          <h3><i data-lucide="cloud" style="width:16px;height:16px"></i> Online</h3>
+          <p class="trust-p"><strong>Online first:</strong> an isolated workspace per company, AI hosted in Europe, never trained on your data.</p>
           <ul>
-            <li>Tool installed on <strong>your</strong> machines — no subscription lock-in for the core local app.</li>
-            <li><strong>Local AI by default</strong> via Ollama (Mistral / Qwen) — documents need not leave your network.</li>
-            <li>Optional EU-hosted API using <strong>your</strong> provider key (zero retention where supported).</li>
-            <li>Phase 1 connectors: <strong>Google Drive</strong> &amp; <strong>SharePoint / OneDrive</strong>.</li>
-            <li>Phase 2: tender alerts from public procurement portals (generic feeds — details on request).</li>
+            <li>Nothing to install — open it in your browser.</li>
+            <li>Your data is used only for you: limited, logged access; deletion on request.</li>
+            <li>Planned connectors: Google Drive &amp; SharePoint / OneDrive.</li>
           </ul>
-          <p style="margin:10px 0 0;font-size:0.8rem"><a href="./install-kit/">Install kit outline →</a> (free; production package delivered with setup)</p>
         </div>
-        <div class="price-box">
-          <div class="tag" style="margin:0 auto 8px">Pricing</div>
-          <div class="big">Price on request</div>
-          <div class="sub">One-time setup + optional low-cost monthly maintenance.<br />Install kit / core local tool: free.</div>
-          <div class="deploy-opts" style="text-align:left;margin-top:14px">
-            <div class="deploy-opt on">
-              <strong><i data-lucide="building-2" style="width:14px;height:14px;vertical-align:-2px"></i> Installed at your office</strong>
-              <span class="pill ok">Recommended</span>
-              <p>On your premises. Runs offline. You own it.</p>
-            </div>
-            <div class="deploy-opt">
-              <strong><i data-lucide="cloud" style="width:14px;height:14px;vertical-align:-2px"></i> Hosted for you</strong>
-              <span class="pill">On request</span>
-              <p>We can host it later with a well-known European provider.</p>
-            </div>
-          </div>
-          <a class="btn btn-primary" style="margin-top:14px" href="https://laborx.com/freelancers/users/id475124" rel="noopener">Ask for a quote</a>
+        <div class="own-card host-card">
+          <span class="pill">Option</span>
+          <h3><i data-lucide="building-2" style="width:16px;height:16px"></i> On-premises</h3>
+          <p class="trust-p">A fully on-premises version is available as an option: installed on your PC or a mini-PC at your office, built to run offline.</p>
+          <ul>
+            <li>Zero access to your data on this option — see below.</li>
+            <li>Available with the Guided plan.</li>
+          </ul>
         </div>
       </div>
+      <div class="plans" id="planCards">
+        <div class="plan">
+          <h3>Essential</h3>
+          <div class="price">€79<small>/month</small></div>
+          <div class="quota">2 tenders/month</div>
+          <ul>
+            <li>Online, isolated workspace</li>
+            <li>Criteria, deadlines &amp; documents extracted</li>
+            <li>Review-ready DOCX draft with citations</li>
+            <li>No setup fee</li>
+          </ul>
+          <a class="btn btn-ghost" href="mailto:LaborX (https://laborx.com/freelancers/users/id475124)?subject=Essential%20plan">Choose Essential</a>
+        </div>
+        <div class="plan reco">
+          <span class="reco-badge">Recommended</span>
+          <h3>Pro</h3>
+          <div class="price">€149<small>/month</small></div>
+          <div class="quota">4 tenders/month</div>
+          <ul>
+            <li>Everything in Essential</li>
+            <li>Twice the monthly tender volume</li>
+            <li>No setup fee</li>
+          </ul>
+          <a class="btn btn-primary" href="mailto:LaborX (https://laborx.com/freelancers/users/id475124)?subject=Pro%20plan">Choose Pro</a>
+        </div>
+        <div class="plan">
+          <h3>Guided</h3>
+          <div class="price">€1,490 <span class="plus">+ €349</span><small>/month</small></div>
+          <div class="quota">8 tenders/month</div>
+          <ul>
+            <li>Everything in Pro</li>
+            <li>Import of your past technical proposals</li>
+            <li>Word template in your brand colours</li>
+            <li>2 h of hands-on guidance</li>
+            <li>On-premises option</li>
+          </ul>
+          <a class="btn btn-ghost" href="mailto:LaborX (https://laborx.com/freelancers/users/id475124)?subject=Guided%20plan">Choose Guided</a>
+        </div>
+      </div>
+      <p class="contact-line"><i data-lucide="mail" style="width:14px;height:14px;vertical-align:-2px"></i> Questions? <a href="mailto:LaborX (https://laborx.com/freelancers/users/id475124)">LaborX (https://laborx.com/freelancers/users/id475124)</a></p>
     </section>
 
-    <!-- Zero access to your data -->
-    <section class="panel" id="trust" aria-label="Zero access to your data">
+    <!-- Your data, protected -->
+    <section class="panel" id="trust" aria-label="Your data, protected">
       <div class="panel-head">
-        <h2><i data-lucide="shield-check" style="width:18px;height:18px;vertical-align:-3px"></i> Zero access to your data</h2>
+        <h2><i data-lucide="shield-check" style="width:18px;height:18px;vertical-align:-3px"></i> Your data, protected</h2>
       </div>
       <p style="margin:0 0 14px;color:var(--muted);font-size:0.88rem">
-        We never take control of your computer. No remote-access tools, no passwords, no unattended sessions.
-        Your tenders and prices stay on <strong>your</strong> machines.
+        We never take control of your computer: no remote-access tools, and we never ask for your passwords.
       </p>
       <div class="trust-grid" id="trustCards">
-        <div class="own-card"><h3><i data-lucide="file-check" style="width:16px;height:16px"></i> Checksum-verified installer</h3><p class="trust-p">Checksum-verified installer (SHA-256). Source code available for your IT to review, and they can verify the file. OS code-signing provided with the delivered build.</p></div>
-        <div class="own-card"><h3><i data-lucide="wifi-off" style="width:16px;height:16px"></i> Built to run offline</h3><p class="trust-p">Local AI by default (Ollama + Mistral / Qwen), so documents don’t need to go to the cloud. An internet connection is only needed to download the tool and its updates.</p></div>
-        <div class="own-card"><h3><i data-lucide="eye-off" style="width:16px;height:16px"></i> We never see your data</h3><p class="trust-p">Bids, prices, and past files stay on your PC or mini-PC. The tool has no remote-access feature.</p></div>
-        <div class="own-card"><h3><i data-lucide="download" style="width:16px;height:16px"></i> You pull updates</h3><p class="trust-p">Download updates yourself, when you want. Nothing installs silently in the background.</p></div>
+        <div class="own-card"><h3><i data-lucide="box" style="width:16px;height:16px"></i> Isolated workspace</h3><p class="trust-p">Each company gets its own isolated workspace. Your tenders, prices and past files are not mixed with anyone else’s.</p></div>
+        <div class="own-card"><h3><i data-lucide="map-pin" style="width:16px;height:16px"></i> AI hosted in Europe</h3><p class="trust-p">The AI runs on infrastructure hosted in Europe, and it is never trained on your data.</p></div>
+        <div class="own-card"><h3><i data-lucide="user-check" style="width:16px;height:16px"></i> Your data is used only for you</h3><p class="trust-p">Limited, logged access; deletion on request.</p></div>
         <div class="own-card"><h3><i data-lucide="video" style="width:16px;height:16px"></i> Support: you share screen</h3><p class="trust-p">Video call help where <strong>you</strong> share your screen. We guide — we never take control.</p></div>
-        <div class="own-card"><h3><i data-lucide="handshake" style="width:16px;height:16px"></i> Trial first + NDA</h3><p class="trust-p">An NDA is in place before you share any real document. You pay only after seeing the tool work on your machine.</p></div>
+        <div class="own-card"><h3><i data-lucide="handshake" style="width:16px;height:16px"></i> NDA before real documents</h3><p class="trust-p">An NDA is in place before you share any real document. Try the fictional sample on this page first.</p></div>
+        <div class="own-card"><h3><i data-lucide="user-round-check" style="width:16px;height:16px"></i> Human review, always</h3><p class="trust-p">Every draft is checked by your team before it goes to a buyer. You stay in control of what you submit.</p></div>
       </div>
-      <h3 style="font-size:0.92rem;margin:18px 0 10px">How you receive the tool</h3>
-      <div class="own-grid" style="grid-template-columns:repeat(3,1fr)" id="deliveryCards">
-        <div class="own-card">
-          <h3><i data-lucide="package" style="width:16px;height:16px"></i> Checksum-verified installer</h3>
-          <ul>
-            <li>Single <strong>.exe</strong> / <strong>.dmg</strong> (MVP ships this way), with a published SHA-256 checksum; OS code-signing provided with the delivered build.</li>
-            <li>Local AI included, desktop icon, drop-folder for past bid files.</li>
-            <li>You double-click — no account, no cloud upload by default.</li>
-          </ul>
+
+      <div class="onprem-block" id="onprem">
+        <h3><i data-lucide="building-2" style="width:16px;height:16px"></i> On-premises option — zero access to your data <span class="pill">Option</span></h3>
+        <p>These points apply <strong>only</strong> to the on-premises version installed at your office, not to the online default.</p>
+        <div class="trust-grid">
+          <div class="own-card"><h3><i data-lucide="eye-off" style="width:16px;height:16px"></i> Zero access to your data</h3><p class="trust-p">Bids, prices and past files stay on your PC or mini-PC. The tool has no remote-access feature.</p></div>
+          <div class="own-card"><h3><i data-lucide="wifi-off" style="width:16px;height:16px"></i> Built to run offline</h3><p class="trust-p">Local AI included (Ollama + Mistral / Qwen). An internet connection is only needed to download the tool and its updates.</p></div>
+          <div class="own-card"><h3><i data-lucide="file-check" style="width:16px;height:16px"></i> Checksum-verified installer</h3><p class="trust-p">Checksum-verified installer (SHA-256). Source code available for your IT to review, and they can verify the file. OS code-signing provided with the delivered build.</p></div>
+          <div class="own-card"><h3><i data-lucide="download" style="width:16px;height:16px"></i> You pull updates</h3><p class="trust-p">Download updates yourself, when you want. Nothing installs silently in the background.</p></div>
+          <div class="own-card"><h3><i data-lucide="server" style="width:16px;height:16px"></i> Plug &amp; play mini-PC</h3><p class="trust-p">Or a preconfigured mini-PC shipped to your office: plug in power and network, open the desktop icon. No remote tunnel.</p></div>
+          <div class="own-card"><h3><i data-lucide="monitor-check" style="width:16px;height:16px"></i> Install while you watch</h3><p class="trust-p">By video call (<strong>you</strong> share screen) or on site. Your IT can sit in and verify the installer checksum.</p></div>
         </div>
-        <div class="own-card">
-          <h3><i data-lucide="server" style="width:16px;height:16px"></i> Plug &amp; play mini-PC</h3>
-          <ul>
-            <li>Preconfigured device shipped to your office.</li>
-            <li>Plug in power + network, open the desktop icon.</li>
-            <li>No remote tunnel, no always-on support link.</li>
-          </ul>
-        </div>
-        <div class="own-card">
-          <h3><i data-lucide="user-round-check" style="width:16px;height:16px"></i> Install while you watch</h3>
-          <ul>
-            <li>By video call (<strong>you</strong> share screen) or on site.</li>
-            <li>We talk you through clicks — we never take control.</li>
-            <li>Your IT can sit in and verify the installer checksum.</li>
-          </ul>
-        </div>
+        <p style="margin:10px 0 0;font-size:0.8rem"><a href="./install-kit/">On-premises install outline →</a></p>
       </div>
     </section>
 
@@ -296,17 +321,17 @@
         <li><strong>No automatic pricing math</strong> — bill-of-quantities prices come from you, not the model.</li>
         <li><strong>No guaranteed score</strong> — we structure to the published criteria; we don’t predict the jury.</li>
         <li><strong>Responsibility stays with the bidder</strong> — Nyyo Automation does not submit bids on your behalf.</li>
-        <li><strong>This demo</strong> — extraction for the sample package is <em>pre-computed</em>; search, form, assembly, and DOCX export run live in your browser on fictional data.</li>
+        <li><strong>This demo</strong> — the sample package is <em>pre-analysed</em> (extraction results are stored, not computed live); search, form, assembly and DOCX export run live in your browser on fictional data.</li>
       </ul>
     </section>
 
     <footer style="text-align:center;color:var(--muted);font-size:0.78rem;padding:20px 0 90px">
-      <p>Nyyo Automation · Remote · Worldwide · Sample data labeled · <a href="https://github.com/nyyoautomation/nyyo-tender-response">Demo page source</a></p>
+      <p>Nyyo Automation · Remote · Worldwide · <a href="mailto:LaborX (https://laborx.com/freelancers/users/id475124)">LaborX (https://laborx.com/freelancers/users/id475124)</a> · <a href="./fr/" hreflang="fr" lang="fr">Version française</a> · Sample data labeled · <a href="https://github.com/nyyoautomation/nyyo-tender-response">Demo page source</a></p>
     </footer>
   </div>
 
   <div class="sticky-hire">
-    <a class="btn btn-primary" href="https://laborx.com/freelancers/users/id475124" rel="noopener"><i data-lucide="briefcase"></i> Hire me</a>
+    <a class="btn btn-primary" href="mailto:LaborX (https://laborx.com/freelancers/users/id475124)?subject=Tender%20response%20tool"><i data-lucide="mail"></i> Contact</a>
     <button type="button" class="btn btn-ghost" id="btnRunSticky" aria-label="Run sample"><i data-lucide="play"></i><span class="lbl">Run sample</span></button>
   </div>
 

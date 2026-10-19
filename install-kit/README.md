@@ -1,35 +1,19 @@
-# Install kit — local tender response tool (free)
+# On-premises option — install outline
 
-You own the tool. It runs on **your** machines. By default, documents never leave your network.
+The default offer is **online**: an isolated workspace per company, AI hosted in Europe, never trained on your data.
+This page describes the **optional on-premises version** (available with the Guided plan), installed on your PC or a mini-PC at your office.
 
-## What you get
-- Local web UI + workers for parsing tenders and drafting review-ready packs
-- **Local AI by default** via [Ollama](https://ollama.com) (Mistral / Qwen recommended)
-- Optional EU-hosted API using **your** provider key (zero retention where the provider supports it)
-- Connectors: Google Drive, SharePoint / OneDrive (phase 1)
-- Tender alerts from public procurement portals (phase 2)
+## On-premises: zero access to your data
+- Runs on **your** machines and is built to run offline; bids, prices and past files stay on your PC or mini-PC.
+- Local AI included via [Ollama](https://ollama.com) (Mistral / Qwen).
+- No remote-access feature; you pull updates yourself.
+- Checksum-verified installer (SHA-256); source code available for your IT to review; OS code-signing provided with the delivered build.
 
-## Pricing model
-- **Install kit: free**
-- **One-time setup fee** (onboarding, templates, connectors) — price on request
-- **Optional low-cost monthly maintenance** — price on request
-- **No subscription lock-in** for the core local tool
+## Delivery
+- Single installer, or a preconfigured mini-PC shipped to your office.
+- Installed while you watch: by video call (**you** share your screen) or on site.
 
-## Quick start (outline)
-```bash
-# 1) Install Ollama and pull a model
-ollama pull mistral
-# or: ollama pull qwen2.5
+## Pricing
+See the plans on the demo page: Essential, Pro, Guided (the on-premises option comes with Guided).
 
-# 2) Run the local stack (Docker Compose shipped with your setup package)
-docker compose up
-
-# 3) Open http://localhost:8787
-```
-
-Full production install guides are delivered with the paid setup. This folder is the public outline.
-
-## Data stays yours
-- Local mode: inference on your hardware
-- Optional cloud: your API key, your retention settings
-- Delete / export anytime
+Contact: LaborX (https://laborx.com/freelancers/users/id475124)

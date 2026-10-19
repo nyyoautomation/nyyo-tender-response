@@ -26,21 +26,58 @@
     return tok;
   }
 
+  const STOP_FR = new Set([
+    "le","la","les","un","une","des","du","de","d","l","et","ou","en","au","aux","a","ce","ces","cet","cette",
+    "pour","par","sur","dans","avec","sans","sous","est","sont","etre","ete","que","qui","quoi","dont","ou",
+    "nous","vous","notre","nos","votre","vos","leur","leurs","son","sa","ses","il","elle","ils","elles","on",
+    "se","ne","pas","plus","tout","tous","toute","toutes","chaque","comme","si","mais","donc","aussi","tres",
+  ]);
+  let LANG = (typeof document !== "undefined" && /^fr/i.test(document.documentElement.lang || "")) ? "fr" : "en";
+
+  function fold(s) {
+    return String(s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  }
+
+  function stemFr(tok) {
+    if (tok.length <= 3) return tok;
+    if (tok.endsWith("aux") && tok.length > 4) return tok.slice(0, -3) + "al";
+    if ((tok.endsWith("s") || tok.endsWith("x")) && tok.length > 3) tok = tok.slice(0, -1);
+    if (tok.endsWith("e") && tok.length > 4) tok = tok.slice(0, -1);
+    return tok;
+  }
+
   function tokenize(text) {
-    return String(text || "")
-      .toLowerCase()
+    const raw = LANG === "fr" ? fold(text).replace(/[’']/g, " ") : String(text || "").toLowerCase();
+    return raw
       .replace(/[^a-z0-9àâäéèêëïîôùûüç\s-]/gi, " ")
-      .split(/\s+/)
+      .split(/[\s-]+/)
       .filter(Boolean)
-      .map(stem);
+      .map(LANG === "fr" ? stemFr : stem);
   }
 
   function contentTokens(text) {
-    return tokenize(text).filter((t) => !STOP.has(t) && t.length > 1);
+    const stop = LANG === "fr" ? STOP_FR : STOP;
+    return tokenize(text).filter((t) => !stop.has(t) && t.length > 1);
   }
 
   /** Expand query with domain synonyms so chips hit the right doc. */
+  function expandQueryFr(query) {
+    const q = fold(query);
+    const extra = [];
+    if (/chaleur|recuperat|cta|cvc|ventil|double flux/.test(q)) extra.push("cvc", "cta", "recuperation", "chaleur", "lys");
+    if (/vitr|facade|menuiser|enveloppe|uw/.test(q)) extra.push("facade", "vitrage", "menuiserie", "enveloppe", "haut-brumeux");
+    if (/sol sportif|p1|parquet|sol/.test(q)) extra.push("sol", "sportif", "p1", "port-brumeux", "classe");
+    if (/conduct|chef|equipe|cv|samira|travaux/.test(q)) extra.push("conductrice", "travaux", "samira", "haddad", "cv");
+    if (/intemper|planning|delai|semaine|fermeture|gantt/.test(q)) extra.push("planning", "intemperies", "semaines", "fermeture", "jours");
+    if (/iso|qualite|9001|qualibat/.test(q)) extra.push("iso", "qualite", "certificat", "9001", "qualibat");
+    if (/grue|levage|toiture|provisoire/.test(q)) extra.push("grue", "levage", "toiture", "provisoires");
+    if (/dechet|environnement|tri|valoris/.test(q)) extra.push("dechets", "valorisation", "tri", "environnement");
+    if (/assurance|decennale|responsabilite/.test(q)) extra.push("assurance", "decennale", "responsabilite", "civile");
+    return query + " " + extra.join(" ");
+  }
+
   function expandQuery(query) {
+    if (LANG === "fr") return expandQueryFr(query);
     const q = String(query || "").toLowerCase();
     const extra = [];
     if (/heat|recovery|ahu|hvac|plant/.test(q)) extra.push("hvac", "heat", "recovery", "ahu", "riverside");
@@ -168,5 +205,5 @@
     };
   }
 
-  global.NyyoBM25 = { buildIndex, score, answer, tokenize, contentTokens };
+  global.NyyoBM25 = { buildIndex, score, answer, tokenize, contentTokens, setLang: (l) => { LANG = l === "fr" ? "fr" : "en"; } };
 })(typeof window !== "undefined" ? window : globalThis);
