@@ -20,7 +20,7 @@ Turn a **construction / public tender** package into a **review-ready** proposal
 ## Languages
 
 - English: https://nyyoautomation.github.io/nyyo-tender-response/
-- Français : https://nyyoautomation.github.io/nyyo-tender-response/fr/ (construction vocabulary: DCE, RC, CCAP, CCTP, DPGF, DC1/DC2/DUME, mémoire technique — fictional buyer and contractor)
+- Français : https://nyyoautomation.github.io/nyyo-tender-response/fr/ (construction vocabulary: DCE, RC, CCAP, CCTP, BPU/DPGF, DC1/DC2/DUME, mémoire technique — fictional buyer and contractor)
 
 ## Hosting & plans
 

@@ -243,7 +243,7 @@
     },
     {
       "id": "D4",
-      "name": "Completed price schedule",
+      "name": "Completed price schedule (BPU/DPGF)",
       "mandatory": true,
       "notes": "No alterations to item codes"
     },
@@ -273,7 +273,7 @@
     },
     {
       "id": "D9",
-      "name": "ESPD / single procurement declaration",
+      "name": "DC1, DC2 and DUME (tender forms) / ESPD",
       "mandatory": true,
       "notes": "Buyer template"
     },

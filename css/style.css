@@ -469,3 +469,36 @@ footer { padding-bottom: 16px !important; }
 }
 .host-line svg, .disclaimer-banner > svg { width: 18px !important; height: 18px !important; flex-shrink: 0; }
 .host-line svg { color: var(--lime); margin-top: 2px; }
+
+/* ===== v3: hero plan reminder ===== */
+.plan-strip { margin-top: 14px; display: grid; gap: 8px; }
+.ps-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.ps-item {
+  display: flex; flex-direction: column; gap: 2px; min-width: 0; padding: 10px 12px; border-radius: 14px;
+  border: 1px solid var(--border); background: rgba(255,255,255,.025); color: var(--text); text-decoration: none;
+  transition: border-color .2s ease, transform .2s ease;
+}
+.ps-item:hover { border-color: rgba(61,139,255,.45); transform: translateY(-1px); }
+.ps-item.reco { border-color: rgba(61,139,255,.55); background: rgba(61,139,255,.08); }
+.ps-item.hl { border-color: rgba(57,255,136,.5); background: linear-gradient(160deg, rgba(57,255,136,.09), rgba(61,139,255,.05)); }
+.ps-name { font-size: 0.78rem; font-weight: 700; color: var(--muted); display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.ps-badge {
+  padding: 1px 7px; border-radius: 999px; font-size: 0.6rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase;
+  background: linear-gradient(90deg, var(--azure), var(--lime)); color: #050814;
+}
+.ps-price { font-size: 1.05rem; font-weight: 800; letter-spacing: -.01em; line-height: 1.25; }
+.ps-price small { font-size: 0.74rem; font-weight: 600; color: var(--muted); letter-spacing: 0; }
+.plan-strip .ps-hl { max-width: none;
+  display: flex; gap: 10px; align-items: flex-start; margin: 0; padding: 10px 12px; border-radius: 14px;
+  border: 1px solid rgba(57,255,136,.35); background: rgba(57,255,136,.06); font-size: 0.84rem; line-height: 1.45;
+}
+.ps-hl strong { color: var(--lime); }
+.ps-hl svg, .ps-hl i { width: 16px !important; height: 16px !important; flex-shrink: 0; color: var(--lime); margin-top: 2px; }
+.ps-link { justify-self: start; display: inline-flex; align-items: center; gap: 6px; font-size: 0.82rem; font-weight: 600; color: var(--lime); text-decoration: none; }
+.ps-link:hover { text-decoration: underline; }
+.ps-link svg { width: 14px; height: 14px; }
+@media (max-width: 560px) {
+  .ps-grid { grid-template-columns: 1fr; gap: 6px; }
+  .ps-item { flex-direction: row; align-items: center; justify-content: space-between; gap: 10px; padding: 9px 12px; }
+  .ps-price { text-align: right; white-space: nowrap; font-size: 1rem; }
+}
