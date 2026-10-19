@@ -19,8 +19,9 @@ Turn a **construction / public tender** package into a **review-ready** proposal
 
 ## Own it locally
 
-- Signed installer / offline local AI (Ollama · Mistral / Qwen)
-- We never see your data — no remote control
+- Checksum-verified installer (SHA-256), open source; OS code-signing provided with the delivered build
+- Local AI by default (Ollama · Mistral / Qwen), built to run offline
+- We never see your data — the tool has no remote-access feature
 - Price on request (one-time setup + optional maintenance)
 
 See [install-kit/](./install-kit/).
