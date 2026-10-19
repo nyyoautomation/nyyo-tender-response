@@ -11,8 +11,6 @@
     packReady: false,
     form: null,
   };
-
-  const LANG = /^fr/i.test(document.documentElement.lang || "") ? "fr" : "en";
   const STR = {
     en: {
       files: ["Rules.pdf", "Admin_specs.pdf", "Tech_specs.pdf", "Prices.xlsx"],
@@ -44,40 +42,8 @@
       genFirst: "Generate the pack first.", printTitle: "Review-ready technical proposal (DRAFT)",
       printWarn: "HUMAN REVIEW REQUIRED — fictional sample.", loadFail: "Demo failed to load data: ",
     },
-    fr: {
-      files: ["RC.pdf", "CCAP.pdf", "CCTP.pdf", "BPU_DPGF.xlsx"],
-      required: "Obligatoire", optional: "Facultatif", page: "p.",
-      chips: ["récupération de chaleur", "sol sportif P1", "conductrice de travaux", "intempéries", "ISO 9001", "grue"],
-      firstQuery: "récupération de chaleur",
-      typeQuery: "Saisissez une recherche ou touchez une suggestion.", noMatch: "Aucun résultat — essayez un autre terme.",
-      drafting: "Rédaction des parties à partir des critères et de vos anciens mémoires…",
-      pmLine: (pm) => `Conductrice / conducteur de travaux désigné(e) : ${pm}.`,
-      closureLine: (w) => `Fermeture continue du gymnase : ${w} semaines (maximum fixé par le RC : 14).`,
-      priceLine: (m) => `Montant total de l'offre : ${m}. Les prix sont saisis par l'entreprise, jamais calculés par l'IA.`,
-      variantYes: "Variante « récupération de chaleur » retenue — chiffrée uniquement sur l'onglet V du BPU/DPGF.",
-      variantNo: "Offre de base uniquement — pas de variante.",
-      notes: "Engagements de l'entreprise : ", manual: "Formulaire / à compléter", needsReview: "À vérifier",
-      mapped: "Réponse proposée",
-      chkD3: "Brouillon généré dans cette démo", chkD4: (m) => `Prix saisi : ${m}`, chkD4none: "Saisir le prix",
-      chkD5: (pm) => `Conduite de travaux : ${pm}`, chkD5none: "Choisir la conduite de travaux",
-      chkD10yes: "Variante retenue — compléter l'onglet V", chkD10no: "Non retenue", attach: "À joindre depuis vos fichiers",
-      docxLoading: "La bibliothèque DOCX se charge encore — réessayez dans une seconde.",
-      docxTitle: "MÉMOIRE TECHNIQUE — BROUILLON À RELIRE",
-      docxWarn: "RELECTURE HUMAINE OBLIGATOIRE — DCE fictif de démonstration. L'entreprise reste seule responsable de toute offre réelle.",
-      docxInputs: (f, m) => `Prix : ${m} · Fermeture : ${f.weeks} semaines · Conduite de travaux : ${f.pm} · Variante : ${f.variant === "yes" ? "oui" : "non"}`,
-      docxPm: (pm) => `Conduite de travaux désignée : ${pm}.`, docxClosure: (w) => `Fermeture continue du gymnase : ${w} semaines.`,
-      docxPrice: (m) => `Montant total de l'offre : ${m}.`, docxVarYes: "Variante récupération de chaleur retenue (onglet V du BPU/DPGF).",
-      docxVarNo: "Offre de base uniquement — pas de variante.", matrix: "Matrice de conformité au CCTP",
-      hdr: ["Réf.", "Exigence", "Source citée"], checklist: "Pièces à remettre (DC1, DC2, DUME, BPU/DPGF…)", reqd: " (obligatoire)",
-      opt: " (facultatif)",
-      footer: "Généré par la démo Nyyo Automation · données fictives d'exemple · ne constitue pas un conseil juridique.",
-      docTitle: "Mémoire technique (brouillon)", file: "VB-2026-GYM-014_memoire_technique_brouillon",
-      genFirst: "Générez d'abord le dossier.", printTitle: "Mémoire technique — brouillon à relire",
-      printWarn: "RELECTURE HUMAINE OBLIGATOIRE — exemple fictif.", loadFail: "Échec du chargement des données de la démo : ",
-    },
   };
-  const T = STR[LANG];
-  if (window.NyyoBM25 && window.NyyoBM25.setLang) window.NyyoBM25.setLang(LANG);
+  const T = STR.en;
 
   const $ = (sel, el = document) => el.querySelector(sel);
   const $$ = (sel, el = document) => [...el.querySelectorAll(sel)];
@@ -292,30 +258,8 @@
   }
 
 
-  /* ---------- Go / No-Go (computed in the browser from the DCE extraction + your documents) ---------- */
+  /* ---------- Go / No-Go (computed in the browser from the tender extraction + your documents) ---------- */
   const GO = {
-    fr: {
-      verdict: { go: "GO conseillé", study: "À étudier", nogo: "NO-GO conseillé" },
-      verdictNote: "Recommandation indicative, calculée sur l'exemple fictif. La décision reste celle de votre équipe.",
-      counts: (o, w, n) => `${o} favorable${o > 1 ? "s" : ""} · ${w} à vérifier · ${n} bloquant${n > 1 ? "s" : ""}`,
-      fitTitle: "Vos preuves face aux critères notés du RC",
-      fitNote: "Indicateur calculé sur l'exemple : part des critères techniques pour lesquels vos documents contiennent au moins deux preuves. Ce n'est pas une note prévisionnelle.",
-      fitLabel: "adéquation estimée",
-      proofs: (n) => (n ? `${n} preuve${n > 1 ? "s" : ""}` : "aucune preuve"),
-      priceCrit: "Saisi par vous — non évalué par l'outil",
-      days: (d) => (d < 0 ? "date passée" : `J-${d}`),
-      deadline: { label: "Délai avant la remise", ok: (d, dt) => `${d} jours avant la remise du ${dt} : le temps de préparer un dossier complet.`, warn: (d, dt) => `${d} jours seulement avant le ${dt} : planning serré.`, no: (d, dt) => `Remise le ${dt} : délai trop court ou dépassé.` },
-      checks: [
-        { k: "refs", label: "Références sur ouvrages similaires", q: "référence gymnase salle des sports piscine équipement sportif bâtiment public", src: /^(references|memoires)\//, min: 2, ok: (n) => `${n} références ou anciens mémoires proches trouvés dans vos documents.`, warn: () => "Une seule référence proche : à renforcer." },
-        { k: "team", label: "Équipe clé disponible", q: "CV conductrice de travaux chef de chantier responsable CVC équipe", src: /^cv\//, min: 2, ok: (n) => `${n} CV de l'équipe clé disponibles.`, warn: () => "CV de l'équipe clé incomplets." },
-        { k: "plan", label: "Délai d'exécution tenable", q: "planning fermeture 14 semaines jalons", src: /planning/, min: 1, ok: () => "Un planning type de 14 semaines existe déjà dans vos documents.", warn: () => "Aucun planning type : à construire." },
-        { k: "certs", label: "Certificats et assurances", q: "certificat ISO 9001 attestation assurance décennale responsabilité civile", src: /^certificats\//, min: 2, ok: (n) => `${n} certificats ou attestations à joindre, déjà dans vos documents.`, warn: () => "Certificats ou attestations manquants." },
-        { k: "means", label: "Moyens matériels", q: "moyens matériels grue échafaudage", src: /^moyens\//, min: 1, ok: () => "Liste des moyens matériels disponible.", warn: () => "Liste des moyens matériels à préparer." },
-      ],
-      risks: { label: "Points de vigilance du DCE", txt: (n, first) => `${n} points à lire avant de décider, dont : « ${first} »` },
-      docs: { label: "Pièces obligatoires à réunir", txt: (n) => `${n} pièces obligatoires (DC1, DC2, DUME, attestations…) : à réunir quoi qu'il arrive.` },
-      critQ: { C1: ["méthodologie phasage récupération de chaleur CVC levage sécurité", /^(memoires|politiques)\//], C2: ["référence gymnase salle des sports piscine", /^references\//], C3: ["CV conductrice chef de chantier responsable CVC", /^cv\//], C4: ["planning semaines jalons intempéries", /planning/] },
-    },
     en: {
       verdict: { go: "GO recommended", study: "Worth a closer look", nogo: "NO-GO recommended" },
       verdictNote: "Indicative recommendation computed on the fictional sample. The decision stays with your team.",
@@ -338,7 +282,7 @@
       docs: { label: "Mandatory documents to gather", txt: (n) => `${n} mandatory documents (tender forms, certificates…): needed either way.` },
       critQ: { C1: ["methodology phasing heat recovery HVAC lifting safety", /^(past_proposals|policies)\//], C2: ["reference sports hall arena aquatic", /^references\//], C3: ["CV project manager supervisor HVAC lead", /^cvs\//], C4: ["programme weeks milestones weather", /programme/] },
     },
-  }[LANG];
+  }.en;
 
   function parseDeadline(d) {
     if (!d) return null;
@@ -367,7 +311,7 @@
     const ex = state.extraction;
     const rows = [];
     // 1. deadline
-    const sub = ex.deadlines.find((d) => /remise des offres|submission/i.test(d.label));
+    const sub = ex.deadlines.find((d) => /submission/i.test(d.label));
     const dt = parseDeadline(sub);
     if (dt) {
       const today = new Date(); today.setHours(0, 0, 0, 0);
