@@ -1,6 +1,6 @@
 # On-premises option — install outline
 
-The default offer is **online**: an isolated workspace per company, AI hosted in Europe, never trained on your data.
+The default offer is **online**: an isolated workspace per company, never trained on your data.
 This page describes the **optional on-premises version** (available with the Guided plan), installed on your PC or a mini-PC at your office.
 
 ## On-premises: zero access to your data
@@ -16,4 +16,4 @@ This page describes the **optional on-premises version** (available with the Gui
 ## Pricing
 See the plans on the demo page: Essential, Pro, Guided (the on-premises option comes with Guided).
 
-Contact: LaborX (https://laborx.com/freelancers/users/id475124)
+Available on LaborX · [Profile](https://github.com/nyyoautomation)
