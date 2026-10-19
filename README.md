@@ -19,7 +19,7 @@ Turn a **construction / public tender** package into a **review-ready** proposal
 
 ## Own it locally
 
-- Checksum-verified installer (SHA-256), open source; OS code-signing provided with the delivered build
+- Checksum-verified installer (SHA-256); source code available for your IT to review; OS code-signing provided with the delivered build
 - Local AI by default (Ollama · Mistral / Qwen), built to run offline
 - We never see your data — the tool has no remote-access feature
 - Price on request (one-time setup + optional maintenance)
