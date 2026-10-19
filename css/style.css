@@ -1,3 +1,4 @@
+html, body { overflow-x: hidden; max-width: 100vw; }
 @import url("./nyyo-kit.css");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap");
 
@@ -308,3 +309,11 @@
 .deploy-opt.on { border-color: rgba(57,255,136,.4); background: rgba(57,255,136,.06); }
 .deploy-opt strong { color: var(--text); display: inline; margin-right: 6px; }
 .deploy-opt p { margin: 4px 0 0; }
+
+@media (max-width: 900px) {
+  .trust-grid, #deliveryCards { grid-template-columns: 1fr !important; }
+  .steps { grid-template-columns: 1fr 1fr; }
+  .pipeline-stage { justify-content: center; }
+  .pipe-arrow { display: none; }
+  .pipe-node { min-width: 42%; }
+}
