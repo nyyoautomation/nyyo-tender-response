@@ -34,70 +34,125 @@
   }
 
   /* ---------- WOW pipeline ---------- */
+  let running = false;
+  function renderPipeCrit() {
+    const box = $("#pipeCrit");
+    if (!box || !state.extraction) return;
+    box.innerHTML = state.extraction.scoring
+      .map(
+        (c) => `<div class="pc-row" data-id="${c.id}"><span class="id">${c.id}</span>
+        <div><span class="pc-name">${escapeHtml(c.name)}</span><div class="pc-bar"><b></b></div></div>
+        <span class="w" data-w="${c.weight}">0%</span></div>`
+      )
+      .join("");
+  }
+
+  function countUp(el, to, ms) {
+    const t0 = performance.now();
+    (function f(t) {
+      const k = Math.min(1, (t - t0) / ms);
+      el.textContent = Math.round(to * k) + "%";
+      if (k < 1) requestAnimationFrame(f);
+    })(t0);
+  }
+
   async function runPipeline() {
+    if (running) return;
+    running = true;
     const btn = $("#btnRun");
     if (btn) btn.disabled = true;
     setStep(1);
     const nodes = $$(".pipe-node");
     nodes.forEach((n) => n.classList.remove("on", "done"));
-    $("#flyDocs").innerHTML = "";
+    renderPipeCrit();
+    setRing("#pipeRing", "#pipeRingPct", 0);
 
-    const files = ["Rules.pdf", "Admin.pdf", "Specs.pdf", "Prices.xlsx"];
+    const pipe = $("#pipeline");
+    const fly = $("#flyDocs");
+    fly.innerHTML = "";
+    const pr = pipe.getBoundingClientRect();
+    const src = nodes[0].getBoundingClientRect();
+    const dst = nodes[1].getBoundingClientRect();
+    const files = ["Rules.pdf", "Admin_specs.pdf", "Tech_specs.pdf", "Prices.xlsx"];
+
+    nodes[0].classList.add("on");
     files.forEach((name, i) => {
       const d = document.createElement("div");
       d.className = "fly-doc";
-      d.style.top = 52 + i * 8 + "%";
-      d.style.left = 6 + i * 3 + "%";
-      d.style.animationDelay = i * 0.18 + "s";
-      d.textContent = name;
-      $("#flyDocs").appendChild(d);
+      d.innerHTML = `<span style="color:var(--lime)">&#9632;</span>${name}`;
+      d.style.setProperty("--sx", src.left - pr.left + 6 + i * 10 + "px");
+      d.style.setProperty("--sy", src.bottom - pr.top + 8 + i * 6 + "px");
+      d.style.setProperty("--tx", dst.left - pr.left + dst.width / 2 - 50 + "px");
+      d.style.setProperty("--ty", dst.top - pr.top + dst.height / 2 - 12 + "px");
+      d.style.animationDelay = i * 0.28 + "s";
+      fly.appendChild(d);
       requestAnimationFrame(() => d.classList.add("go"));
     });
 
-    nodes[0].classList.add("on");
-    await sleep(400);
+    await sleep(450);
     nodes[0].classList.add("done");
     nodes[1].classList.add("on");
-    await sleep(700);
+    await sleep(500); // first docs landing in Extract while others still fly
     nodes[1].classList.add("done");
     nodes[2].classList.add("on");
-    renderExtraction();
-    await lightCriteria();
-    nodes[2].classList.add("done");
     nodes[3].classList.add("on");
-    await animateRing(42);
+    renderExtraction();
+    const ringP = animateRingEl("#pipeRing", "#pipeRingPct", 42, 3000);
+
+    const rows = $$(".pc-row");
+    const cards = $$(".crit");
+    for (let i = 0; i < rows.length; i++) {
+      const w = Number(rows[i].querySelector(".w").dataset.w);
+      rows[i].classList.add("lit");
+      rows[i].querySelector(".pc-bar b").style.width = Math.min(100, w * 2.6) + "%";
+      countUp(rows[i].querySelector(".w"), w, 650);
+      if (cards[i]) cards[i].classList.add("lit");
+      await sleep(420);
+    }
+    nodes[2].classList.add("done");
+    await ringP;
+    setRing("#coverRing", "#coverPct", 42);
     nodes[3].classList.add("done");
     $("#panelExtract").classList.remove("hidden");
     if (btn) btn.disabled = false;
+    running = false;
     icons();
-    $("#panelExtract").scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   async function lightCriteria() {
-    const cards = $$(".crit");
-    for (let i = 0; i < cards.length; i++) {
-      await sleep(180);
-      cards[i].classList.add("lit");
-    }
+    $$(".crit").forEach((c) => c.classList.add("lit"));
   }
 
-  function animateRing(pct) {
+  function setRing(ringSel, labelSel, v) {
+    const ring = $(ringSel), label = $(labelSel);
+    if (!ring) return;
+    ring.style.setProperty("--p", v);
+    ring.dataset.p = v;
+    label.textContent = v + "%";
+  }
+
+  function animateRingEl(ringSel, labelSel, pct, dur) {
     return new Promise((resolve) => {
-      const ring = $("#coverRing");
-      const label = $("#coverPct");
-      const start = Number(getComputedStyle(ring).getPropertyValue("--p")) || 0;
+      const ring = $(ringSel);
+      if (!ring) return resolve();
+      const start = Number(ring.dataset.p || 0);
       const t0 = performance.now();
-      const dur = 900;
       function frame(t) {
         const k = Math.min(1, (t - t0) / dur);
-        const v = Math.round(start + (pct - start) * k);
-        ring.style.setProperty("--p", v);
-        label.textContent = v + "%";
+        const e = 1 - Math.pow(1 - k, 3);
+        setRing(ringSel, labelSel, Math.round(start + (pct - start) * e));
         if (k < 1) requestAnimationFrame(frame);
         else resolve();
       }
       requestAnimationFrame(frame);
     });
+  }
+
+  function animateRing(pct) {
+    return Promise.all([
+      animateRingEl("#coverRing", "#coverPct", pct, 900),
+      animateRingEl("#pipeRing", "#pipeRingPct", pct, 900),
+    ]);
   }
 
   function renderExtraction() {

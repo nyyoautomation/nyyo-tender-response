@@ -12,6 +12,10 @@
   <meta property="og:image" content="https://nyyoautomation.github.io/nyyo-tender-response/assets/og.png" />
   <meta property="og:url" content="https://nyyoautomation.github.io/nyyo-tender-response/" />
   <link rel="icon" href="./assets/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/nyyo-kit.css" />
   <link rel="stylesheet" href="./css/style.css" />
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js" defer></script>
@@ -70,6 +74,13 @@
         <div class="pipe-node" data-node="score"><div class="ico"><i data-lucide="gauge"></i></div><strong>Score criteria</strong><small>weights light up</small></div>
         <span class="pipe-arrow">→</span>
         <div class="pipe-node" data-node="cover"><div class="ico"><i data-lucide="circle-check"></i></div><strong>Coverage</strong><small>compliance ring</small></div>
+      </div>
+      <div class="pipe-live" aria-live="polite">
+        <div class="pipe-crit" id="pipeCrit"></div>
+        <div class="pipe-ring-box">
+          <div class="ring" id="pipeRing" style="margin:0 auto"><span id="pipeRingPct">0%</span></div>
+          <small>Requirement coverage</small>
+        </div>
       </div>
       <div class="fly-docs" id="flyDocs" aria-hidden="true"></div>
       <div class="actions-row">
