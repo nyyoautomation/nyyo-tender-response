@@ -23,8 +23,8 @@ Turn a **construction / public tender** package into a **review-ready** proposal
 
 ## Hosting & plans
 
-- **Online first:** an isolated workspace per company, and how your data is handled is written into your quote; a fully on-premises version is available as an option.
-- Your data is used only for you: limited, logged access; deletion on request.
+- **Online first:** a workspace per company, and how your data is handled is written into your quote; a fully on-premises version is available as an option.
+- Limited access; deletion on request.
 - Plans (pricing on quote): **Essential** (2 tenders/month) · **Pro** (4 tenders/month, recommended) · **Guided** (8 tenders/month, import of past proposals, branded Word template, 2 h guidance, on-premises option). No setup fee on Essential and Pro.
 - On-premises option: zero access to your data — see [install-kit/](./install-kit/).
 
