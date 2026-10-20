@@ -1,6 +1,6 @@
 # On-premises option — install outline
 
-The default offer is **online**: an isolated workspace per company, never trained on your data.
+The default offer is **online**: an isolated workspace per company. How your data is handled is written into your quote.
 This page describes the **optional on-premises version** (available with the Guided plan), installed on your PC or a mini-PC at your office.
 
 ## On-premises: zero access to your data
